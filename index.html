@@ -232,25 +232,34 @@
     .timeline-item:last-child { padding-bottom:0; }
     .timeline-dot { position:absolute; left:-2.55rem; top:6px; width:14px; height:14px; border-radius:50%; border:2px solid var(--border); background:var(--cream); transition:background 0.3s, transform 0.2s; }
     .timeline-item:hover .timeline-dot, .timeline-item.current .timeline-dot { background:var(--gold); border-color:var(--border); transform: scale(1.08); }
-    /* Pending / upcoming indicator: pulsing radar signal */
-    .timeline-dot.pending { background: var(--coral); border-color: var(--border); }
-    .timeline-dot.pending::before,
-    .timeline-dot.pending::after {
+    /* Pending / in-progress indicator: pulsing radar signal */
+    .timeline-dot.pending,
+    .timeline-dot.in-progress { border-color: var(--border); }
+    .timeline-dot.pending { background: var(--coral); }
+    .timeline-dot.in-progress { background: var(--yellow); }
+    .timeline-dot.pending::before, .timeline-dot.pending::after,
+    .timeline-dot.in-progress::before, .timeline-dot.in-progress::after {
       content:''; position:absolute; left:50%; top:50%; width:10px; height:10px;
-      border-radius:50%; border:2px solid var(--coral);
+      border-radius:50%; border:2px solid;
       transform: translate(-50%, -50%) scale(1);
       opacity: 0.85;
       animation: pulse-ring 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
       pointer-events:none;
     }
-    .timeline-dot.pending::after { animation-delay: 0.9s; }
+    .timeline-dot.pending::before, .timeline-dot.pending::after { border-color: var(--coral); }
+    .timeline-dot.in-progress::before, .timeline-dot.in-progress::after { border-color: var(--yellow); }
+    .timeline-dot.pending::after,
+    .timeline-dot.in-progress::after { animation-delay: 0.9s; }
     @keyframes pulse-ring {
       0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.85; }
       80%  { transform: translate(-50%, -50%) scale(3.2); opacity: 0; }
       100% { transform: translate(-50%, -50%) scale(3.2); opacity: 0; }
     }
-    .timeline-item.pending:hover .timeline-dot.pending { transform: scale(1.08); }
-    .upcoming-badge { display:inline-block; margin-left:0.5rem; padding:0.2rem 0.65rem; border-radius:6px; font-size:0.62rem; font-weight:700; background:var(--coral); color:#fff; vertical-align:middle; font-family:'Work Sans',sans-serif; border: 2px solid var(--border); box-shadow: 1px 1px 0 var(--border); text-transform: uppercase; letter-spacing: 0.04em; }
+    .timeline-item.pending:hover .timeline-dot.pending,
+    .timeline-item.in-progress:hover .timeline-dot.in-progress { transform: scale(1.08); }
+    .upcoming-badge, .progress-badge { display:inline-block; margin-left:0.5rem; padding:0.2rem 0.65rem; border-radius:6px; font-size:0.62rem; font-weight:700; vertical-align:middle; font-family:'Work Sans',sans-serif; border: 2px solid var(--border); box-shadow: 1px 1px 0 var(--border); text-transform: uppercase; letter-spacing: 0.04em; }
+    .upcoming-badge { background:var(--coral); color:#fff; }
+    .progress-badge { background:var(--yellow); color:var(--dark); }
     .timeline-date { font-size:0.68rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color: var(--ink-muted); margin-bottom:0.4rem; font-family:'Work Sans',sans-serif; }
     .timeline-title { font-family:'Fraunces',Georgia,serif; font-size:1.15rem; font-weight: 700; color:var(--dark); margin-bottom:0.5rem; }
     .timeline-body { font-size:0.88rem; line-height:1.75; color: var(--dark); opacity: 0.88; }
@@ -656,10 +665,10 @@
       <p>From internships to self-driven projects, I've built experience designing for different contexts, from beauty and fashion websites to apps tackling real-world issues. I'm always looking forward to new challenges that let me mix creativity with problem-solving.</p>
     </div>
     <div class="timeline">
-      <div class="timeline-item pending">
+      <div class="timeline-item pending" data-start="2026-06-30" data-end="2026-08-28">
         <div class="timeline-dot pending"></div>
         <p class="timeline-date">30 Jun - 28 Aug 2026</p>
-        <h3 class="timeline-title">Research Intern - ETH Zürich, Switzerland <span class="upcoming-badge">Upcoming</span></h3>
+        <h3 class="timeline-title">Research Intern - ETH Zürich, Switzerland <span class="upcoming-badge" data-auto-badge>Upcoming</span></h3>
         <div class="timeline-body"><p>Joining the Faculty of Computer Science to conduct research at the intersection of Human-Computer Interaction (HCI) and Artificial Intelligence (AI), advancing human-centered intelligent systems.</p></div>
       </div>
       <div class="timeline-item">
@@ -993,6 +1002,38 @@
     try { stored = localStorage.getItem('theme'); } catch (e) {}
     if (stored === 'dark') applyTheme('dark');
     else if (!stored && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+  })();
+
+  /* Auto-update timeline state badges (Upcoming -> In Progress -> Completed) based on today's date */
+  (function updateTimelineStates() {
+    function parseLocalDate(iso) {
+      const [y, m, d] = iso.split('-').map(Number);
+      return new Date(y, m - 1, d);
+    }
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    document.querySelectorAll('.timeline-item[data-start]').forEach(item => {
+      const start = parseLocalDate(item.dataset.start);
+      const end = item.dataset.end ? parseLocalDate(item.dataset.end) : null;
+      const badge = item.querySelector('[data-auto-badge]');
+      const dot = item.querySelector('.timeline-dot');
+      if (!badge || !dot) return;
+      if (today < start) {
+        item.classList.add('pending'); item.classList.remove('in-progress');
+        dot.classList.add('pending'); dot.classList.remove('in-progress');
+        badge.classList.add('upcoming-badge'); badge.classList.remove('progress-badge');
+        badge.textContent = 'Upcoming';
+      } else if (end && today > end) {
+        item.classList.remove('pending', 'in-progress');
+        dot.classList.remove('pending', 'in-progress');
+        badge.remove();
+      } else {
+        item.classList.add('in-progress'); item.classList.remove('pending');
+        dot.classList.add('in-progress'); dot.classList.remove('pending');
+        badge.classList.add('progress-badge'); badge.classList.remove('upcoming-badge');
+        badge.textContent = 'In Progress';
+      }
+    });
   })();
 
   /* Hamburger menu */
