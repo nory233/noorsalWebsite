@@ -3,326 +3,1511 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Noor Salama — Inside My Mind</title>
-  <meta name="description" content="A visual map of Noor Salama's interests, experiences, and projects — CS Engineer & UX/UI Designer.">
+  <title>Noor Salama - Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500;1,9..144,700&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/network.css">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500&family=Kalam:wght@300;400;700&family=Patrick+Hand&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+  <style>
+/* ============================================================
+   NOOR SALAMA — Handwritten Notebook portfolio
+   Ink on paper. Personal, playful, a little imperfect.
+   ============================================================ */
+
+:root {
+  /* Ink & paper */
+  --paper:        #fdf6e6;   /* warm ivory notebook paper */
+  --paper-warm:   #f9efd7;
+  --paper-lines:  rgba(70, 60, 100, 0.09);
+  --ink:          #2b2340;   /* dark ballpoint ink */
+  --ink-soft:     rgba(43, 35, 64, 0.72);
+  --ink-faint:    rgba(43, 35, 64, 0.42);
+  --ink-line:     rgba(43, 35, 64, 0.55);
+
+  /* Pens & markers */
+  --pen-blue:     #4d6bd8;
+  --pen-coral:    #e05540;
+  --pen-lilac:    #7e5cd8;
+  --pen-green:    #4fa47a;
+  --pen-yellow:   #f4c94a;
+  --hi-yellow:    rgba(244, 220, 96, 0.55);   /* highlighter */
+  --hi-pink:      rgba(255, 173, 178, 0.55);
+  --hi-blue:      rgba(155, 195, 255, 0.55);
+
+  /* Card surfaces (subtle warm tints on paper) */
+  --sticky-yellow: #fff2a8;
+  --sticky-pink:   #ffd4dc;
+  --sticky-mint:   #cdeeda;
+  --sticky-lilac:  #e2d7ff;
+
+  --border-shadow: 3px 3px 0 rgba(43, 35, 64, 0.16);
+  --border-shadow-lg: 5px 6px 0 rgba(43, 35, 64, 0.18);
+}
+
+body.dark {
+  --paper:        #17141f;   /* dark ink-blue paper (like a moleskine at night) */
+  --paper-warm:   #1e1a2b;
+  --paper-lines:  rgba(230, 220, 255, 0.07);
+  --ink:          #f3ecda;   /* warm cream ink */
+  --ink-soft:     rgba(243, 236, 218, 0.78);
+  --ink-faint:    rgba(243, 236, 218, 0.42);
+  --ink-line:     rgba(243, 236, 218, 0.55);
+
+  --pen-blue:     #8fa3ee;
+  --pen-coral:    #ff7d68;
+  --pen-lilac:    #b9a1ff;
+  --pen-green:    #6fc7a1;
+  --pen-yellow:   #ffdc76;
+  --hi-yellow:    rgba(255, 220, 118, 0.28);
+  --hi-pink:      rgba(255, 173, 178, 0.24);
+  --hi-blue:      rgba(155, 195, 255, 0.24);
+
+  --sticky-yellow: #4a3f1e;
+  --sticky-pink:   #4a2b31;
+  --sticky-mint:   #234036;
+  --sticky-lilac:  #362b52;
+
+  --border-shadow: 3px 3px 0 rgba(243, 236, 218, 0.14);
+  --border-shadow-lg: 5px 6px 0 rgba(243, 236, 218, 0.16);
+}
+
+/* Global smooth theme transition — kept short so hovers feel instant */
+body, section, nav, footer, .mobile-menu, .xr-card, .edu-block,
+.case-card, .case-full, .dark-card, .project-info, .project-card,
+.timeline-dot, .slider-btn, .modal, .modal-close, .meta-tag,
+.skill-pill, .current-badge, .upcoming-badge, .theme-toggle,
+.social-icon, .tag, .point-badge {
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Kalam', 'Patrick Hand', 'Work Sans', system-ui, sans-serif;
+  font-weight: 400;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.65;
+  letter-spacing: 0.005em;
+  overflow-x: hidden;
+
+  /* Paper: warm background + subtle ruled lines.
+     No background-attachment: fixed — that causes repaint on every scroll. */
+  background-color: var(--paper);
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 31px,
+      var(--paper-lines) 31px,
+      var(--paper-lines) 32px
+    );
+}
+/* body::before noise overlay removed for performance —
+   paper lines + gradients already give plenty of texture. */
+
+/* ============================================================
+   TYPOGRAPHY — handwritten
+   ============================================================ */
+h1, h2, h3, h4, h5 {
+  font-family: 'Caveat', 'Kalam', cursive;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.1;
+  color: var(--ink);
+}
+strong, b { font-weight: 700; color: var(--ink); }
+em, i { font-style: italic; }
+
+a { color: inherit; }
+
+/* Selection */
+::selection { background: var(--hi-yellow); color: var(--ink); }
+
+/* ============================================================
+   DOODLE UTILITY BACKGROUNDS (inline SVG data URIs)
+   ============================================================ */
+
+/* squiggly hand-drawn underline (used under section titles) */
+/* Used via .section-title::after */
+
+/* ============================================================
+   NAV — like a torn-out page header
+   ============================================================ */
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 3rem;
+  position: sticky; top: 0; z-index: 200;
+  border-bottom: 1.5px dashed var(--ink-faint);
+  /* No backdrop-filter blur — expensive on scroll. Solid semi-transparent paper is enough. */
+  background-color: color-mix(in srgb, var(--paper) 94%, transparent);
+}
+
+.ns-logo {
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  display: inline-block;
+  transform: rotate(-3deg);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+.ns-logo:hover { transform: rotate(0deg) scale(1.05); color: var(--pen-coral); }
+.ns-logo .n, .ns-logo .s { color: inherit; }
+.ns-logo .dot { display: none; }
+
+.nav-links { display: flex; align-items: center; gap: 1.5rem; }
+.nav-links a {
+  color: var(--ink);
+  text-decoration: none;
+  font-family: 'Caveat', cursive;
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  position: relative;
+  padding: 0.15rem 0.35rem;
+  transition: color 0.2s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; left: 0; right: 100%; bottom: -3px;
+  height: 6px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'><path d='M 2 5 Q 15 1 30 4 T 60 5 T 98 4' fill='none' stroke='%23e05540' stroke-width='2.2' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat; background-size: 100% 100%;
+  transition: right 0.32s cubic-bezier(0.2, 0.7, 0.15, 1);
+}
+.nav-links a:hover { color: var(--pen-coral); }
+.nav-links a:hover::after { right: 0; }
+
+/* Social icons — small hand-drawn frames */
+.social-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px;
+  background: var(--paper);
+  color: var(--ink);
+  text-decoration: none;
+  border: 1.5px solid var(--ink);
+  border-radius: 46% 54% 52% 48% / 48% 46% 54% 52%; /* irregular hand-drawn */
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.social-icon:hover {
+  transform: translate(-1px, -1px) rotate(-4deg);
+  background: var(--pen-yellow);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.social-icon svg { width: 15px; height: 15px; fill: currentColor; }
+
+/* Theme toggle */
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  border-radius: 52% 48% 48% 52% / 46% 52% 48% 54%;
+  box-shadow: 2px 2px 0 var(--ink);
+  cursor: pointer; padding: 0;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.theme-toggle:hover {
+  transform: translate(-1px, -1px) rotate(-6deg);
+  background: var(--pen-yellow);
+}
+.theme-toggle svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.theme-toggle .icon-sun { display: none; }
+body.dark .theme-toggle .icon-moon { display: none; }
+body.dark .theme-toggle .icon-sun { display: block; }
+
+.nav-actions-mobile { display: none; align-items: center; gap: 0.6rem; }
+
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+.hamburger span { display: block; width: 26px; height: 2.5px; background: var(--ink); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none; position: fixed; top: 0; left: 0; right: 0;
+  background: var(--paper);
+  padding: 4.8rem 2rem 2rem;
+  flex-direction: column; gap: 1rem; z-index: 198;
+  opacity: 0; transition: opacity 0.25s ease; pointer-events: none;
+  border-bottom: 1.5px dashed var(--ink);
+}
+.mobile-menu.open { opacity: 1; pointer-events: all; }
+.mobile-menu a {
+  color: var(--ink); text-decoration: none;
+  font-family: 'Caveat', cursive; font-size: 1.6rem; font-weight: 600;
+  letter-spacing: 0;
+  padding: 0.4rem 0; border-bottom: 1px dashed var(--ink-faint);
+}
+.mobile-menu a:last-of-type { border-bottom: none; }
+.mobile-socials { display: flex; gap: 0.8rem; padding-top: 0.5rem; }
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+section { padding: 5.5rem 4rem; }
+
+.section-label {
+  font-family: 'Caveat', cursive;
+  font-size: 1.35rem;
+  color: var(--pen-coral);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  transform: rotate(-1deg);
+  display: inline-block;
+}
+.section-label::before {
+  content: '✦ ';
+  color: var(--pen-yellow);
+}
+
+.section-title {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 2rem;
+  line-height: 1;
+  letter-spacing: 0;
+  display: inline-block;
+  position: relative;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 4%; right: -8%;
+  bottom: -14px;
+  height: 16px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 16' preserveAspectRatio='none'><path d='M 3 10 Q 30 2 60 8 T 120 9 T 180 8 T 240 9 T 297 8' fill='none' stroke='%23e05540' stroke-width='3' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  min-height: 88vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Wipe the old dot-grid — paper lines already show through body */
+.hero::before { display: none; }
+
+/* Remove the huge yellow disc & blob. Replace with floating doodles. */
+.hero::after {
+  content: '';
+  position: absolute; z-index: 0; pointer-events: none;
+  right: 6%; top: 12%;
+  width: 130px; height: 130px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g stroke='%23e05540' stroke-width='2.4' stroke-linecap='round' fill='none'><path d='M 12 50 Q 40 20 78 50'/><path d='M 68 42 L 78 50 L 66 56'/></g></svg>");
+  background-repeat: no-repeat; background-size: contain;
+  transform: rotate(18deg);
+  opacity: 0.85;
+  animation: floatA 6s ease-in-out infinite;
+}
+.hero-blob {
+  position: absolute; z-index: 0; pointer-events: none;
+  left: 5%; top: 22%;
+  width: 90px; height: 90px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g fill='none' stroke='%237e5cd8' stroke-width='2.4' stroke-linecap='round'><path d='M 50 8 L 55 42 L 90 47 L 55 52 L 50 90 L 45 52 L 10 47 L 45 42 Z'/></g></svg>");
+  background-repeat: no-repeat; background-size: contain;
+  transform: rotate(-8deg);
+  animation: floatB 7s ease-in-out infinite;
+  border: none; background-color: transparent; border-radius: 0;
+}
+/* Sprinkle a few more via body pseudo — added later */
+@keyframes floatA { 0%,100% { transform: rotate(18deg) translateY(0); } 50% { transform: rotate(22deg) translateY(-10px); } }
+@keyframes floatB { 0%,100% { transform: rotate(-8deg) translateY(0); } 50% { transform: rotate(-4deg) translateY(-14px); } }
+
+/* Extra floating doodles placed absolutely inside .hero via ::before on wrappers  */
+.hero .hero-profile {
+  width: 200px; height: 200px;
+  object-fit: cover;
+  clip-path: url(#splash);
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  /* Stacked drop-shadows: 4 tiny offsets act as an ink outline (follows the clip-path),
+     final one is the chunky pop shadow */
+  filter:
+    drop-shadow( 2px 0    0 var(--ink))
+    drop-shadow(-2px 0    0 var(--ink))
+    drop-shadow( 0   2px  0 var(--ink))
+    drop-shadow( 0  -2px  0 var(--ink))
+    drop-shadow( 5px 7px  0 rgba(43, 35, 64, 0.30));
+  margin-bottom: 2.5rem;
+  transform: rotate(-4deg);
+  position: relative; z-index: 1;
+  opacity: 0; animation: fadeUp 0.9s 0.2s forwards;
+  transition: transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+.hero .hero-profile:hover { transform: rotate(0deg) scale(1.05); }
+body.dark .hero .hero-profile {
+  filter:
+    drop-shadow( 2px 0    0 var(--ink))
+    drop-shadow(-2px 0    0 var(--ink))
+    drop-shadow( 0   2px  0 var(--ink))
+    drop-shadow( 0  -2px  0 var(--ink))
+    drop-shadow( 5px 7px  0 rgba(0, 0, 0, 0.45));
+}
+
+.hero h1 {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(2.6rem, 6.8vw, 5.4rem);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.05;
+  max-width: 960px;
+  letter-spacing: 0;
+  opacity: 0; animation: fadeUp 0.9s 0.35s forwards;
+  position: relative; z-index: 1;
+}
+.hero h1 em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, transparent 55%, var(--hi-yellow) 55%, var(--hi-yellow) 92%, transparent 92%);
+  padding: 0 0.15em;
+  border-radius: 4px;
+  display: inline;
+}
+.hero h1 em:nth-of-type(even) {
+  background: linear-gradient(180deg, transparent 55%, var(--hi-pink) 55%, var(--hi-pink) 92%, transparent 92%);
+}
+.hero h1 em:nth-of-type(3n) {
+  background: linear-gradient(180deg, transparent 55%, var(--hi-blue) 55%, var(--hi-blue) 92%, transparent 92%);
+}
+
+.hero p {
+  color: var(--ink-soft);
+  margin-top: 1.6rem;
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 1.18rem;
+  font-weight: 400;
+  max-width: 560px;
+  opacity: 0; animation: fadeUp 0.9s 0.55s forwards;
+  position: relative; z-index: 1;
+}
+
+.hero-tags {
+  display: flex; gap: 0.7rem;
+  margin-top: 2.2rem; flex-wrap: wrap; justify-content: center;
+  opacity: 0; animation: fadeUp 0.9s 0.75s forwards;
+  position: relative; z-index: 1;
+}
+
+.tag {
+  padding: 0.5rem 1.1rem;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  border-radius: 44% 56% 52% 48% / 60% 44% 56% 40%;
+  background: var(--paper);
+  box-shadow: 2px 2px 0 var(--ink);
+  transform: rotate(-2deg);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.2s ease;
+}
+.tag:nth-child(2) { transform: rotate(2deg); border-radius: 58% 42% 50% 50% / 45% 60% 40% 55%; }
+.tag:nth-child(3) { transform: rotate(-1deg); border-radius: 50% 50% 60% 40% / 55% 50% 50% 45%; }
+.tag:hover { transform: rotate(0deg) translate(-1px,-1px); box-shadow: 3px 3px 0 var(--ink); }
+
+.tag-gold { background: var(--pen-yellow); }
+.tag-red { background: var(--sticky-pink); }
+.tag-outline { background: transparent; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+#about { padding-top: 4rem; }
+
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: start;
+}
+.about-text p {
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 1.06rem;
+  line-height: 1.85;
+  color: var(--ink);
+  margin-bottom: 1.15rem;
+}
+.about-text p em {
+  font-style: italic;
+  background: linear-gradient(180deg, transparent 55%, var(--hi-yellow) 55%, var(--hi-yellow) 92%, transparent 92%);
+  padding: 0 0.1em;
+}
+
+/* Skills pills — hand-drawn ovals */
+.skills-row {
+  display: flex; flex-wrap: wrap; gap: 0.55rem;
+  margin-top: 1.6rem;
+}
+.skill-pill {
+  padding: 0.4rem 1rem;
+  font-family: 'Caveat', cursive;
+  font-size: 1.18rem;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 62% 38% 48% 52% / 45% 60% 40% 55%;
+  box-shadow: 2px 2px 0 var(--ink);
+  transform: rotate(-1.5deg);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.skill-pill:nth-child(3n) { transform: rotate(1.5deg); border-radius: 46% 54% 60% 40% / 55% 44% 56% 45%; background: var(--sticky-yellow); }
+.skill-pill:nth-child(3n+1) { background: var(--sticky-mint); }
+.skill-pill:nth-child(3n+2) { background: var(--sticky-lilac); }
+.skill-pill:hover { transform: rotate(0deg) translate(-1px, -1px); }
+
+/* XR card — sticky note with washi tape */
+.xr-card {
+  background: var(--sticky-yellow);
+  border-radius: 6px 8px 5px 7px;
+  padding: 1.75rem 1.85rem 1.5rem;
+  border: none;
+  box-shadow: 4px 5px 0 rgba(43, 35, 64, 0.15), inset 0 0 0 1px rgba(43, 35, 64, 0.06);
+  transform: rotate(-1.2deg);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.xr-card::before {
+  /* washi tape */
+  content: '';
+  position: absolute;
+  top: -14px; left: 50%;
+  transform: translateX(-50%) rotate(-4deg);
+  width: 110px; height: 24px;
+  background:
+    repeating-linear-gradient(45deg, rgba(224, 85, 64, 0.55) 0 6px, rgba(244, 201, 74, 0.55) 6px 12px);
+  border-radius: 2px;
+  box-shadow: 0 2px 3px rgba(43, 35, 64, 0.12);
+  opacity: 0.9;
+}
+.xr-card:hover { transform: rotate(0deg); }
+.xr-card .card-label {
+  font-family: 'Caveat', cursive;
+  font-size: 1.25rem;
+  color: var(--pen-coral);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-bottom: 0.4rem;
+}
+.xr-card p {
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 1.03rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.xr-card p strong {
+  background: linear-gradient(180deg, transparent 60%, rgba(224, 85, 64, 0.28) 60%, rgba(224, 85, 64, 0.28) 90%, transparent 90%);
+  padding: 0 0.15em;
+  color: var(--ink);
+  font-weight: 700;
+}
+body.dark .xr-card { background: var(--sticky-yellow); }
+body.dark .xr-card p strong { background: linear-gradient(180deg, transparent 60%, rgba(255, 125, 104, 0.35) 60%, rgba(255, 125, 104, 0.35) 90%, transparent 90%); }
+
+/* Education blocks — index cards */
+.edu-block {
+  margin-top: 1.5rem;
+  padding: 1.2rem 1.5rem 1.3rem;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  border-radius: 8px 6px 9px 5px;
+  box-shadow: 4px 5px 0 var(--ink);
+  transform: rotate(0.6deg);
+  position: relative;
+  transition: transform 0.25s ease;
+}
+.edu-block:nth-of-type(odd) { transform: rotate(-0.7deg); }
+.edu-block:hover { transform: rotate(0deg) translateY(-2px); }
+.edu-block::before {
+  /* small tape strip top-left */
+  content: '';
+  position: absolute;
+  top: -10px; left: 24px;
+  width: 60px; height: 18px;
+  background: rgba(244, 201, 74, 0.75);
+  transform: rotate(-6deg);
+  box-shadow: 0 1px 2px rgba(43, 35, 64, 0.1);
+  border-radius: 1px;
+}
+.edu-block h4 {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.edu-block p {
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  margin-top: 0.35rem;
+}
+
+/* Hobbies strip */
+.hobbies-strip { margin-top: 3rem; padding-top: 2rem; border-top: 2px dashed var(--ink-faint); }
+.hobbies-row { display: flex; align-items: flex-start; gap: 0; flex-wrap: wrap; }
+.hobby-pill { flex: 1; min-width: 180px; padding: 0 2rem 0 0; }
+.hobby-label {
+  display: block;
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+.hobby-desc {
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  display: block;
+}
+.hobby-divider { width: 1.5px; background: var(--ink-faint); opacity: 0.6; align-self: stretch; margin: 0 2rem 0 0; flex-shrink: 0; }
+
+/* ============================================================
+   EXPERIENCE — timeline as a hand-drawn dashed line
+   ============================================================ */
+#experience { background: transparent; }
+.exp-layout { display: grid; grid-template-columns: 260px 1fr; gap: 4rem; }
+.exp-intro p {
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--ink);
+  margin-top: 1rem;
+}
+
+.timeline { position: relative; padding-left: 2.2rem; }
+.timeline::before {
+  content: '';
+  position: absolute; left: 4px; top: 6px; bottom: 6px;
+  width: 6px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 200' preserveAspectRatio='none'><path d='M 3 2 Q 6 30 3 60 T 3 118 T 3 176 T 3 200' fill='none' stroke='%232b2340' stroke-width='2.2' stroke-linecap='round' stroke-dasharray='4 6'/></svg>");
+  background-repeat: repeat-y;
+  background-size: 100% 200px;
+  opacity: 0.55;
+}
+body.dark .timeline::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 200' preserveAspectRatio='none'><path d='M 3 2 Q 6 30 3 60 T 3 118 T 3 176 T 3 200' fill='none' stroke='%23f3ecda' stroke-width='2.2' stroke-linecap='round' stroke-dasharray='4 6'/></svg>");
+}
+
+.timeline-item { position: relative; padding-bottom: 2.4rem; opacity: 0; transform: translateX(-16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.timeline-item.visible { opacity: 1; transform: translateX(0); }
+.timeline-item:last-child { padding-bottom: 0; }
+
+/* Timeline dots become hand-drawn stars/hearts/circles */
+.timeline-dot {
+  position: absolute; left: -2.55rem; top: 4px;
+  width: 22px; height: 22px;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2 L14.5 9.5 L22 12 L14.5 14.5 L12 22 L9.5 14.5 L2 12 L9.5 9.5 Z' fill='%23f4c94a' stroke='%232b2340' stroke-width='1.6' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat; background-size: 100% 100%;
+  transform: rotate(-6deg);
+  transition: transform 0.25s ease;
+}
+.timeline-item:nth-child(odd) .timeline-dot { transform: rotate(6deg); }
+.timeline-item:hover .timeline-dot { transform: rotate(0deg) scale(1.15); }
+
+.timeline-dot.pending {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21 s-8 -5 -8 -12 a5 5 0 0 1 9 -3 a5 5 0 0 1 9 3 c0 7 -8 12 -10 12 z' fill='%23e05540' stroke='%232b2340' stroke-width='1.6' stroke-linejoin='round'/></svg>");
+}
+.timeline-dot.in-progress {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='9' fill='%23f4c94a' stroke='%232b2340' stroke-width='1.6'/><path d='M12 6 v6 l4 3' stroke='%232b2340' stroke-width='2' stroke-linecap='round' fill='none'/></svg>");
+}
+/* Kill pulse rings — replaced by a gentle wiggle for pending/in-progress */
+.timeline-dot.pending::before, .timeline-dot.pending::after,
+.timeline-dot.in-progress::before, .timeline-dot.in-progress::after { display: none; }
+.timeline-dot.pending, .timeline-dot.in-progress { animation: wiggle 2.4s ease-in-out infinite; }
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+
+.upcoming-badge, .progress-badge, .current-badge {
+  display: inline-block;
+  margin-left: 0.55rem;
+  padding: 0.15rem 0.7rem;
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  vertical-align: middle;
+  border: 1.5px solid var(--ink);
+  border-radius: 46% 54% 52% 48% / 40% 60% 50% 50%;
+  box-shadow: 2px 2px 0 var(--ink);
+  transform: rotate(-3deg);
+}
+.upcoming-badge { background: var(--pen-coral); color: #fff; }
+.progress-badge { background: var(--pen-yellow); color: var(--ink); }
+.current-badge  { background: var(--pen-yellow); color: var(--ink); }
+
+.timeline-date {
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--ink-soft);
+  margin-bottom: 0.35rem;
+}
+.timeline-location { font-weight: 700; color: var(--ink); }
+.timeline-location::before { content: ' · '; margin: 0 0.25rem; opacity: 0.6; }
+
+.timeline-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-body {
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.timeline-body ul { padding-left: 1.2rem; }
+.timeline-body ul li { margin-bottom: 0.35rem; list-style: '✎  '; padding-left: 0.2rem; }
+.timeline-body ul li::marker { color: var(--pen-coral); }
+
+/* ============================================================
+   WORK — polaroid grid
+   ============================================================ */
+#work {
+  padding: 5.5rem 0 0 0; overflow: hidden;
+  border-top: 2px dashed var(--ink-faint);
+}
+#work .work-header { padding: 0 4rem 2.5rem; display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; }
+#work .section-label { color: var(--pen-coral); }
+
+.slider-nav { display: flex; gap: 0.7rem; flex-shrink: 0; }
+.slider-btn {
+  width: 50px; height: 50px;
+  border-radius: 50% 46% 54% 50% / 50% 50% 46% 54%;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; font-family: 'Caveat', cursive; font-weight: 700;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.slider-btn:hover { transform: translate(-1px, -1px) rotate(-5deg); background: var(--pen-yellow); box-shadow: 4px 4px 0 var(--ink); }
+.slider-btn:disabled { opacity: 0.35; cursor: default; pointer-events: none; }
+
+.projects-slider-wrap { position: relative; }
+.projects-slider {
+  display: flex; gap: 1.8rem;
+  overflow-x: auto; scroll-behavior: smooth;
+  padding: 1.5rem 4rem 3rem;
+  scrollbar-width: none; -ms-overflow-style: none;
+  cursor: grab; user-select: none;
+}
+.projects-slider:active { cursor: grabbing; }
+.projects-slider::-webkit-scrollbar { display: none; }
+.projects-slider-wrap::after {
+  content: ''; position: absolute; right: 0; top: 0; bottom: 0;
+  width: 100px;
+  background: linear-gradient(to left, var(--paper), transparent);
+  pointer-events: none;
+}
+
+.slider-progress-wrap {
+  padding: 0 4rem;
+  height: 6px;
+  position: relative;
+}
+.slider-progress-wrap::before {
+  content: ''; position: absolute; left: 4rem; right: 4rem; top: 2px;
+  height: 2px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 2' preserveAspectRatio='none'><path d='M 0 1 Q 25 -2 50 1 T 100 1' fill='none' stroke='%232b2340' stroke-width='1.8' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat; background-size: 100% 100%;
+  opacity: 0.4;
+}
+.slider-progress-bar {
+  height: 100%; width: 0%;
+  background: var(--pen-coral);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+  position: relative; z-index: 1;
+}
+.slider-counter {
+  padding: 1.2rem 4rem 2rem;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.slider-counter span { color: var(--pen-coral); font-weight: 700; }
+
+/* Project cards — polaroid */
+.project-card {
+  border-radius: 4px;
+  overflow: visible;
+  border: 1.5px solid var(--ink);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+  cursor: pointer;
+  flex: 0 0 320px; min-width: 320px;
+  display: flex; flex-direction: column;
+  background: var(--paper);
+  padding: 14px 14px 20px;
+  box-shadow: 5px 6px 0 var(--ink);
+  transform: rotate(-1.6deg);
+  position: relative;
+}
+.project-card:nth-child(even) { transform: rotate(1.4deg); }
+.project-card:nth-child(3n)   { transform: rotate(-0.8deg); }
+.project-card::before {
+  /* washi tape at top */
+  content: '';
+  position: absolute;
+  top: -10px; left: 40%;
+  width: 80px; height: 22px;
+  background:
+    repeating-linear-gradient(45deg, rgba(224, 85, 64, 0.7) 0 6px, rgba(244, 201, 74, 0.7) 6px 12px);
+  transform: translateX(-50%) rotate(-6deg);
+  box-shadow: 0 2px 3px rgba(43, 35, 64, 0.14);
+  border-radius: 1px;
+  z-index: 2;
+}
+.project-card:hover {
+  transform: rotate(0deg) translate(-3px, -5px);
+  box-shadow: 8px 10px 0 var(--ink);
+}
+
+.project-thumb {
+  width: 100%; height: 210px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 2.2rem; font-weight: 600; font-style: normal;
+  letter-spacing: 0;
+  position: relative; overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 3px;
+  border: 1px solid var(--ink);
+}
+.project-thumb::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 55%, rgba(43,35,64,0.08) 100%);
+  pointer-events: none;
+}
+.project-info { padding: 1.15rem 0.2rem 0.2rem; flex: 1; display: flex; flex-direction: column; background: transparent; }
+.project-info h3 {
+  font-family: 'Caveat', cursive;
+  font-size: 1.55rem; font-weight: 600;
+  margin-bottom: 0.4rem;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.project-info p {
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  flex: 1;
+}
+.project-type {
+  display: inline-block;
+  margin-top: 0.8rem;
+  padding: 0.2rem 0.65rem;
+  font-family: 'Caveat', cursive;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  background: var(--pen-yellow);
+  border: 1.5px solid var(--ink);
+  border-radius: 44% 56% 52% 48% / 60% 44% 56% 40%;
+  align-self: flex-start;
+}
+.open-hint {
+  display: flex; align-items: center; gap: 0.4rem;
+  margin-top: 0.85rem;
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--pen-coral);
+}
+.open-hint svg { width: 13px; height: 13px; fill: currentColor; }
+
+/* Card thumb colour variations kept but softened as pastel wash */
+.card-1 .project-thumb { background: linear-gradient(145deg, #e2d7ff 0%, #c8b8fa 100%); color: var(--ink); }
+.card-2 .project-thumb { background: linear-gradient(145deg, #d4d0f7 0%, #6d5cc7 100%); color: #fff; }
+.card-3 .project-thumb { background: linear-gradient(145deg, #fff2c2 0%, #f0c86a 100%); color: var(--ink); }
+.card-4 .project-thumb { background: linear-gradient(145deg, #ffd4dc 0%, #e88a9a 100%); color: var(--ink); }
+.card-5 .project-thumb { background: linear-gradient(145deg, #c9e4d3 0%, #7abd94 100%); color: var(--ink); }
+.card-6 .project-thumb { background: linear-gradient(145deg, #b8d0ff 0%, #6b8fe0 100%); color: var(--ink); }
+.card-7 .project-thumb { background: linear-gradient(145deg, #f4d5b8 0%, #d99a68 100%); color: var(--ink); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: transparent;
+  color: var(--ink);
+  padding: 3rem 4rem 2rem;
+  border-top: 2px dashed var(--ink-faint);
+}
+.footer-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1.5rem;
+  max-width: 1200px; margin: 0 auto;
+}
+.footer-left .ns-logo { color: var(--ink); }
+.footer-left .ns-logo:hover { color: var(--pen-coral); }
+.footer-tagline {
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  margin-top: 0.3rem;
+}
+.footer-links { display: flex; gap: 1.5rem; align-items: center; }
+.footer-links a {
+  color: var(--ink); text-decoration: none;
+  font-family: 'Caveat', cursive;
+  font-size: 1.25rem; font-weight: 500;
+  letter-spacing: 0; text-transform: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--pen-coral); }
+.footer-socials { display: flex; gap: 0.6rem; }
+.footer-socials .social-icon {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.footer-socials .social-icon:hover { background: var(--pen-yellow); color: var(--ink); }
+.footer-divider { border: none; border-top: 1.5px dashed var(--ink-faint); margin: 1.75rem 0 1rem; }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 0.8rem;
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  max-width: 1200px; margin: 0 auto;
+}
+.footer-bottom span { color: var(--pen-coral); font-weight: 700; }
+
+/* ============================================================
+   MODALS — like flipping to a detail page in the journal
+   ============================================================ */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  /* No backdrop-filter blur — heavy on paint. Darker solid scrim gives depth just as well. */
+  background: rgba(20, 15, 32, 0.72);
+  display: flex; align-items: flex-start; justify-content: center;
+  overflow-y: auto; padding: 2rem 1rem;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: var(--paper);
+  background-image:
+    repeating-linear-gradient(to bottom, transparent 0, transparent 31px, var(--paper-lines) 31px, var(--paper-lines) 32px);
+  border-radius: 10px 8px 12px 6px;
+  max-width: 920px; width: 100%;
+  overflow: hidden;
+  transform: translateY(40px) scale(0.97) rotate(-0.4deg);
+  transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
+  margin: auto;
+  border: 1.5px solid var(--ink);
+  box-shadow: 8px 10px 0 rgba(43, 35, 64, 0.22);
+}
+.modal-overlay.open .modal { transform: translateY(0) scale(1) rotate(0); }
+
+.modal-hero {
+  width: 100%; height: 340px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  border-bottom: 1.5px dashed var(--ink);
+}
+.modal-hero-ar { background: linear-gradient(135deg, #e2d7ff 0%, #b8a4f0 100%); }
+.modal-hero-vr { background: linear-gradient(135deg, #2b2340 0%, #0f0d16 100%); }
+.modal-hero-content { text-align: center; padding: 2rem; z-index: 1; }
+.modal-hero-content .project-number {
+  font-family: 'Caveat', cursive;
+  font-size: 1.35rem; font-weight: 600;
+  letter-spacing: 0; text-transform: none;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+.modal-hero-content h2 {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: 0;
+  transform: rotate(-1deg);
+  display: inline-block;
+}
+.modal-hero-content .hero-sub {
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin-top: 0.5rem;
+  font-weight: 400;
+}
+
+.modal-close {
+  position: absolute; top: 1.2rem; right: 1.2rem;
+  width: 44px; height: 44px;
+  border-radius: 50% 46% 54% 50%;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink);
+  font-size: 1.2rem; font-weight: 700; font-family: 'Caveat', cursive;
+  transition: transform 0.25s ease, background 0.25s ease;
+  z-index: 2;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.modal-close:hover { background: var(--pen-yellow); transform: translate(-1px, -1px) rotate(90deg); }
+
+.modal-body { padding: 2.5rem 3rem 3.2rem; }
+
+.modal-meta {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin-bottom: 2.4rem;
+}
+.meta-tag {
+  padding: 0.3rem 0.85rem;
+  font-family: 'Caveat', cursive;
+  font-size: 1.02rem; font-weight: 500;
+  letter-spacing: 0; text-transform: none;
+  border: 1.5px solid var(--ink);
+  border-radius: 46% 54% 52% 48% / 60% 44% 56% 40%;
+  transform: rotate(-1.5deg);
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform 0.2s ease;
+}
+.meta-tag:nth-child(even) { transform: rotate(1.5deg); border-radius: 58% 42% 50% 50% / 45% 60% 40% 55%; }
+.meta-tag:hover { transform: rotate(0deg); }
+.meta-gold { background: var(--pen-yellow); color: var(--ink); }
+.meta-red { background: var(--sticky-pink); color: var(--ink); }
+.meta-outline { background: var(--paper); color: var(--ink); }
+
+.case-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.5rem; margin-bottom: 1.5rem;
+}
+
+.case-card, .case-full {
+  background: var(--paper);
+  border-radius: 8px 6px 9px 7px;
+  padding: 1.5rem 1.75rem;
+  border: 1.5px solid var(--ink);
+  box-shadow: 4px 5px 0 rgba(43, 35, 64, 0.16);
+  transition: transform 0.25s ease;
+}
+.case-card { transform: rotate(-0.5deg); }
+.case-card:nth-child(even) { transform: rotate(0.5deg); }
+.case-card:hover, .case-full:hover { transform: rotate(0deg) translateY(-2px); }
+.case-full { margin-bottom: 1.5rem; text-align: left; }
+
+.case-card .cc-label,
+.case-full .cc-label {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--pen-coral);
+  font-weight: 600;
+  letter-spacing: 0; text-transform: none;
+  margin-bottom: 0.4rem;
+}
+.case-card h5,
+.case-full h5 {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.55rem;
+  line-height: 1.15;
+}
+.case-card p,
+.case-full p {
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+.case-card p:last-child, .case-full p:last-child { margin-bottom: 0; }
+.case-card ul, .case-full ul { padding-left: 1.2rem; }
+.case-card ul li, .case-full ul li {
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+  list-style: '✎  ';
+  padding-left: 0.15rem;
+}
+.case-card ul li::marker, .case-full ul li::marker { color: var(--pen-coral); }
+.case-card strong, .case-full strong { color: var(--ink); font-weight: 700; }
+
+.case-full .images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 18px;
+}
+.case-image {
+  width: 100%; max-width: 260px;
+  margin: 0 auto; display: block;
+  border-radius: 6px;
+  border: 1.5px solid var(--ink);
+  box-shadow: 3px 4px 0 var(--ink);
+  transform: rotate(-1deg);
+  transition: transform 0.25s ease;
+}
+.case-image:nth-child(even) { transform: rotate(1deg); }
+.case-image:hover { transform: rotate(0deg) scale(1.03); }
+
+.dark-card {
+  background: #241d38;
+  border-radius: 8px 6px 9px 7px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+  border: 1.5px solid var(--ink);
+  box-shadow: 4px 5px 0 var(--pen-yellow);
+  transform: rotate(0.3deg);
+  color: var(--paper);
+}
+.dark-card .cc-label {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--pen-yellow);
+  font-weight: 600;
+  letter-spacing: 0; text-transform: none;
+  margin-bottom: 0.4rem;
+}
+.dark-card h5 {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--paper);
+  margin-bottom: 0.55rem;
+  line-height: 1.15;
+}
+.dark-card p {
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: rgba(253, 246, 230, 0.85);
+}
+.dark-card ul { padding-left: 1.2rem; }
+.dark-card ul li {
+  font-family: 'Kalam', 'Patrick Hand', sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: rgba(253, 246, 230, 0.85);
+  margin-bottom: 0.35rem;
+  list-style: '✎  ';
+}
+.dark-card ul li::marker { color: var(--pen-yellow); }
+.dark-card strong { color: var(--paper); }
+
+.pill-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 0.85rem; }
+.pill {
+  padding: 0.25rem 0.75rem;
+  font-family: 'Caveat', cursive;
+  font-size: 1rem; font-weight: 500;
+  letter-spacing: 0; text-transform: none;
+  border-radius: 46% 54% 52% 48% / 60% 44% 56% 40%;
+  border: 1.5px solid var(--pen-yellow);
+  color: var(--pen-yellow);
+  background: rgba(244, 201, 74, 0.08);
+  transform: rotate(-1deg);
+  transition: transform 0.2s ease;
+}
+.pill:hover { transform: rotate(0deg); }
+.pill-gold { background: rgba(244, 201, 74, 0.15); }
+.pill-red  { background: rgba(224, 85, 64, 0.15); color: #ffb0a0; border-color: #ffb0a0; }
+.pill-cream { background: rgba(253, 246, 230, 0.08); color: var(--paper); border-color: rgba(253, 246, 230, 0.5); }
+
+.divider { width: 100%; height: 1.5px; background: var(--ink-faint); margin: 2rem 0; opacity: 0.6; border-radius: 2px; }
+
+.points-row { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 1rem; }
+.point-badge {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px 6px 9px 7px;
+  background: var(--sticky-mint);
+  font-family: 'Caveat', cursive;
+  font-size: 1.15rem; font-weight: 500;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  transform: rotate(-1deg);
+  transition: transform 0.25s ease;
+}
+.point-badge:hover { transform: rotate(0deg); }
+.point-badge .check {
+  width: 20px; height: 20px;
+  border-radius: 4px;
+  background: var(--pen-yellow);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  border: 1.5px solid var(--ink);
+}
+.point-badge .check svg { width: 12px; height: 12px; fill: var(--ink); }
+
+/* ============================================================
+   SCROLL ANIMATIONS
+   ============================================================ */
+.fade-section { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-section.visible { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .exp-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 768px) {
+  section { padding: 3.5rem 1.5rem; }
+  #work { padding: 3.5rem 0 0 0; }
+  #work .work-header { padding: 0 1.5rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .projects-slider { padding: 1.5rem 1.5rem 2.5rem; }
+  .slider-progress-wrap { padding: 0 1.5rem; }
+  .slider-counter { padding: 1rem 1.5rem 1.5rem; }
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .nav-actions-mobile { display: flex; }
+  .hamburger { display: flex; }
+  .mobile-menu { display: flex; }
+  .case-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .modal-body { padding: 1.5rem 1.5rem 2.5rem; }
+  .modal-hero { height: 230px; }
+  .modal-hero-content h2 { font-size: 2.2rem; }
+  .project-card { flex: 0 0 275px; min-width: 275px; }
+  .hero h1 { font-size: clamp(2rem, 8vw, 3.2rem); }
+  footer { padding: 2rem 1.5rem; }
+  .hobbies-row { flex-direction: column; gap: 1.2rem; }
+  .hobby-divider { display: none; }
+  .hobby-pill { padding: 0; }
+}
+@media (max-width: 480px) {
+  nav { padding: 0.9rem 1.2rem; }
+  .ns-logo { font-size: 1.75rem; }
+  .modal-overlay { padding: 1rem 0.5rem; }
+  .modal { border-radius: 12px; }
+  .modal-body { padding: 1.25rem 1.25rem 2rem; }
+  .case-full .images { grid-template-columns: 1fr; }
+  .project-card { flex: 0 0 240px; min-width: 240px; }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.15s !important;
+  }
+}
+
+  </style>
 </head>
-<body class="dark">
-  <!-- Atmospheric background layers -->
-  <div class="grain" aria-hidden="true"></div>
-  <div class="vignette" aria-hidden="true"></div>
+<body>
 
-  <!-- Intro overlay -->
-  <div class="intro" id="intro">
-    <div class="intro-inner">
-      <p class="intro-eyebrow">Welcome</p>
-      <h1 class="intro-title">Inside <em>Noor's</em> mind</h1>
-      <p class="intro-sub">A visual map of how <span>CS Engineering</span>, <span>UX/UI</span>, <span>HCI</span>, <span>AI</span>, <span>XR</span> and <span>research</span> meet in my work.</p>
-      <button class="intro-cta" id="introEnter">Begin exploring &rarr;</button>
-      <p class="intro-hint">drag &middot; scroll &middot; hover &middot; click</p>
-    </div>
-  </div>
+<!-- Hand-drawn splash silhouette used to clip the profile photo -->
+<svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true">
+  <defs>
+    <clipPath id="splash" clipPathUnits="objectBoundingBox">
+      <path d="M 0.50 0.05 Q 0.30 0.00 0.18 0.14 Q 0.02 0.20 0.06 0.36 Q -0.02 0.46 0.05 0.58 Q -0.01 0.72 0.10 0.80 Q 0.14 0.94 0.30 0.94 Q 0.38 1.02 0.52 0.96 Q 0.62 1.02 0.72 0.94 Q 0.88 0.98 0.90 0.82 Q 1.02 0.76 0.96 0.62 Q 1.04 0.50 0.94 0.42 Q 1.02 0.28 0.88 0.22 Q 0.90 0.06 0.74 0.08 Q 0.62 -0.02 0.50 0.05 Z"/>
+    </clipPath>
+  </defs>
+</svg>
 
-  <!-- Universe (SVG network) -->
-  <div class="universe" id="universe" aria-label="Interactive mind map of Noor Salama's work">
-    <svg id="net" xmlns="http://www.w3.org/2000/svg" viewBox="-800 -600 1600 1200" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="3" result="blur"/>
-          <feMerge>
-            <feMergeNode in="blur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-        <filter id="edgeGlow" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="2" result="blur"/>
-          <feMerge>
-            <feMergeNode in="blur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-        <radialGradient id="haloAccent" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="var(--halo)" stop-opacity="0.55"/>
-          <stop offset="70%" stop-color="var(--halo)" stop-opacity="0.05"/>
-          <stop offset="100%" stop-color="var(--halo)" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <g id="camera">
-        <g id="edgesLayer"></g>
-        <g id="halosLayer"></g>
-        <g id="nodesLayer"></g>
-      </g>
-    </svg>
-  </div>
-
-  <!-- Mobile explorer (only visible on small screens) -->
-  <div class="explorer" id="explorer" aria-hidden="true">
-    <div class="explorer-topbar">
-      <a href="#" class="logo-mark" aria-label="Noor Salama">
-        <span class="logo-mark-text">NS</span>
-      </a>
-      <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
-        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-      </button>
-    </div>
-    <div class="explorer-breadcrumb" id="explorerCrumb"></div>
-    <div class="explorer-body" id="explorerBody"></div>
-    <div class="explorer-footer">
-      <div class="social-row" role="group" aria-label="Contact">
-        <a href="mailto:noor.salama@example.com" class="social-icon" title="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
-        <a href="https://www.linkedin.com/in/noorsal" target="_blank" rel="noopener" class="social-icon" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-        <a href="https://www.behance.net/noorsal1" target="_blank" rel="noopener" class="social-icon" title="Behance"><svg viewBox="0 0 50 50"><path d="M 9 4 C 6.24 4 4 6.24 4 9 L 4 41 C 4 43.76 6.24 46 9 46 L 41 46 C 43.76 46 46 43.76 46 41 L 46 9 C 46 6.24 43.76 4 41 4 L 9 4 z M 13 13 L 21.199219 13 C 23.699219 13 28 13.100391 28 18.900391 C 28 21.400391 26.600781 22.699609 25.300781 23.599609 C 27.300781 24.299609 29 25.900391 29 29.400391 C 29 35.500391 24.099609 36 21.099609 36 L 13 36 L 13 13 z M 31 15 L 40 15 L 40 17 L 31 17 L 31 15 z M 35.5 19 C 39.1 19 42 21.9 42 25.5 C 42 25.9 42 26.300781 41.800781 26.800781 L 31.300781 26.800781 C 31.500781 29.200781 33.300781 30.300781 35.300781 30.300781 C 36.800781 30.300781 37.799219 29.699609 38.699219 28.599609 L 41.599609 30.099609 C 40.099609 32.299609 37.9 33.5 35.5 33.5 C 31.4 33.5 28 30.4 28 26 C 28 21.7 31.3 19 35.5 19 z M 35.300781 22 C 33.500781 22 31.900391 23.099219 31.400391 24.699219 L 39 24.699219 C 38.6 22.999219 37.100781 22 35.300781 22 z M 17 16 L 17 22 L 20.699219 22 C 22.099219 22 23.599609 21.500781 23.599609 19.300781 C 23.599609 16.700781 21.699219 16 20.199219 16 L 17 16 z M 17 25 L 17 32.699219 L 21 32.699219 C 22.8 32.699219 24.599609 31.999219 24.599609 29.699219 C 24.599609 27.299219 22.699219 25 20.699219 25 L 17 25 z"/></svg></a>
-      </div>
-    </div>
-  </div>
-
-  <!-- HUD (desktop floating controls) -->
-  <div class="hud" aria-hidden="false">
-    <a href="#" class="logo-mark hud-item" aria-label="Noor Salama — reset view" id="logoReset">
-      <span class="logo-mark-text">NS</span>
-      <span class="logo-mark-sub">Noor Salama</span>
-    </a>
-
-    <button class="theme-toggle hud-item" id="themeToggle" aria-label="Toggle dark/light" title="Toggle theme">
+<!-- NAV -->
+<nav>
+  <a href="#" class="ns-logo" aria-label="Noor Salama"><span class="n">N</span><span class="s">S</span><span class="dot"></span></a>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <!-- FIX 3 applied: social-icon hover now uses --dark color, icons are 90% opacity at rest -->
+    <a href="https://mail.google.com/mail/u/1/#inbox?compose=GTvVlcSDbhKxjVTwknlSKwtHlZtHddVCvRgcVwddpmpBnhjCPwMszzsXDCXKdNHLwLrJmsqBDvwQc" class="social-icon" title="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+    <a href="https://www.linkedin.com/in/noorsal" target="_blank" class="social-icon" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <!-- FIX 2: Better Behance SVG -->
+    <a href="https://www.behance.net/noorsal1" target="_blank" class="social-icon" title="Behance"><svg viewBox="0 0 50 50" style="width:15px;height:15px;fill:currentColor"><path d="M 9 4 C 6.24 4 4 6.24 4 9 L 4 41 C 4 43.76 6.24 46 9 46 L 41 46 C 43.76 46 46 43.76 46 41 L 46 9 C 46 6.24 43.76 4 41 4 L 9 4 z M 13 13 L 21.199219 13 C 23.699219 13 28 13.100391 28 18.900391 C 28 21.400391 26.600781 22.699609 25.300781 23.599609 C 27.300781 24.299609 29 25.900391 29 29.400391 C 29 35.500391 24.099609 36 21.099609 36 L 13 36 L 13 13 z M 31 15 L 40 15 L 40 17 L 31 17 L 31 15 z M 35.5 19 C 39.1 19 42 21.9 42 25.5 C 42 25.9 42 26.300781 41.800781 26.800781 L 31.300781 26.800781 C 31.500781 29.200781 33.300781 30.300781 35.300781 30.300781 C 36.800781 30.300781 37.799219 29.699609 38.699219 28.599609 L 41.599609 30.099609 C 40.099609 32.299609 37.9 33.5 35.5 33.5 C 31.4 33.5 28 30.4 28 26 C 28 21.7 31.3 19 35.5 19 z M 35.300781 22 C 33.500781 22 31.900391 23.099219 31.400391 24.699219 L 39 24.699219 C 38.6 22.999219 37.100781 22 35.300781 22 z M 17 16 L 17 22 L 20.699219 22 C 22.099219 22 23.599609 21.500781 23.599609 19.300781 C 23.599609 16.700781 21.699219 16 20.199219 16 L 17 16 z M 17 25 L 17 32.699219 L 21 32.699219 C 22.8 32.699219 24.599609 31.999219 24.599609 29.699219 C 24.599609 27.299219 22.699219 25 20.699219 25 L 17 25 z"/></svg></a>
+    <button class="theme-toggle" id="themeToggleDesktop" aria-label="Toggle theme" title="Toggle dark/light mode">
       <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
     </button>
+  </div>
+  <div class="nav-actions-mobile">
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme" title="Toggle dark/light mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-    <div class="hint hud-item">
-      <span class="hint-dot"></span>
-      <span>drag &middot; scroll &middot; hover</span>
+<!-- FIX 1: Mobile drawer sits behind nav, no gap -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#work" onclick="closeMobileMenu()">Work</a>
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#experience" onclick="closeMobileMenu()">Experience</a>
+  <div class="mobile-socials">
+    <a href="https://mail.google.com/mail/u/1/#inbox?compose=GTvVlcSDbhKxjVTwknlSKwtHlZtHddVCvRgcVwddpmpBnhjCPwMszzsXDCXKdNHLwLrJmsqBDvwQc" class="social-icon" title="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+    <a href="https://www.linkedin.com/in/noorsal" target="_blank" class="social-icon" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a href="https://www.behance.net/noorsal1" target="_blank" class="social-icon" title="Behance"><svg viewBox="0 0 50 50" style="width:15px;height:15px;fill:currentColor"><path d="M 9 4 C 6.24 4 4 6.24 4 9 L 4 41 C 4 43.76 6.24 46 9 46 L 41 46 C 43.76 46 46 43.76 46 41 L 46 9 C 46 6.24 43.76 4 41 4 L 9 4 z M 13 13 L 21.199219 13 C 23.699219 13 28 13.100391 28 18.900391 C 28 21.400391 26.600781 22.699609 25.300781 23.599609 C 27.300781 24.299609 29 25.900391 29 29.400391 C 29 35.500391 24.099609 36 21.099609 36 L 13 36 L 13 13 z M 31 15 L 40 15 L 40 17 L 31 17 L 31 15 z M 35.5 19 C 39.1 19 42 21.9 42 25.5 C 42 25.9 42 26.300781 41.800781 26.800781 L 31.300781 26.800781 C 31.500781 29.200781 33.300781 30.300781 35.300781 30.300781 C 36.800781 30.300781 37.799219 29.699609 38.699219 28.599609 L 41.599609 30.099609 C 40.099609 32.299609 37.9 33.5 35.5 33.5 C 31.4 33.5 28 30.4 28 26 C 28 21.7 31.3 19 35.5 19 z M 35.300781 22 C 33.500781 22 31.900391 23.099219 31.400391 24.699219 L 39 24.699219 C 38.6 22.999219 37.100781 22 35.300781 22 z M 17 16 L 17 22 L 20.699219 22 C 22.099219 22 23.599609 21.500781 23.599609 19.300781 C 23.599609 16.700781 21.699219 16 20.199219 16 L 17 16 z M 17 25 L 17 32.699219 L 21 32.699219 C 22.8 32.699219 24.599609 31.999219 24.599609 29.699219 C 24.599609 27.299219 22.699219 25 20.699219 25 L 17 25 z"/></svg></a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob"></div>
+  <img src="image.jpeg" alt="Noor" class="hero-profile" onerror="this.style.display='none'">
+  <h1>Hey! it's Noor, a <em>CS Engineer</em> & <em>UX|UI Designer</em>. I create <em>Clean</em> & <em>Interactive</em> Digital Experiences</h1>
+  <p>Currently based in Stockholm. I make digital platforms that don't just work, they vibe + interact!</p>
+  <div class="hero-tags">
+    <span class="tag tag-gold">UX/UI Design</span>
+    <span class="tag tag-red">XR</span>
+    <span class="tag tag-outline">HCI</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="fade-section">
+    <p class="section-label">Who I am</p>
+    <h2 class="section-title">About Me</h2>
+  </div>
+  <div class="about-grid fade-section">
+    <div class="about-text">
+      <p>I'm Noor Salama, and I love blending logic with creativity, turning wireframes into experiences that feel fun, intuitive, and a little unexpected. With a background in coding (Python, C#, Java), I bridge the gap between design and development.</p>
+      <p>I started my journey as a Computer Science Engineer, where I fell in love with solving problems through logic and code. But along the way, I realized something was missing, the spark of creativity. That's when I discovered UX/UI design.</p>
+      <p>What began as tinkering with layouts and colors quickly turned into a passion for crafting experiences that feel human, playful, and meaningful. My engineering background gave me the technical mindset to understand how things work, while design allowed me to reimagine how they should <em>feel</em>.</p>
+      <p>Being Bulgarian, and having been born and raised in the UAE, I've grown up surrounded by a mix of cultures, perspectives, and aesthetics. This diversity naturally shapes how I approach design: open-minded, curious, and always thinking about different users and experiences.</p>
+      <p>Since then, I've worked on everything from redesigning fashion and beauty websites to building apps that tackle real-world challenges like food waste. Each project has taught me that design isn't just about pixels, it's really about people!!</p>
+      <p>Outside of design & tech you'll probably find me on the ice figure skating, in the water swimming, in the mountains, or 
+        enjoying a good tennis match. I'm also deeply connected to music, it's a constant source of inspiration
+      in both my life and my creative work. </p>
+      <p>Now, I'm on a mission to bring a little funk into the digital world, designs that are not only functional but also spark joy, curiosity, and connection.</p>
+      <div class="skills-row">
+        <span class="skill-pill">Figma</span><span class="skill-pill">Python</span><span class="skill-pill">C#</span><span class="skill-pill">Java</span><span class="skill-pill">Unity</span><span class="skill-pill">AR/VR</span><span class="skill-pill">Prototyping</span><span class="skill-pill">User Research</span>
+      </div>
     </div>
-
-    <nav class="menu hud-item" aria-label="Site sections">
-      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="menuList">
-        <span class="menu-lines"><span></span><span></span></span>
-        <span class="menu-word">Menu</span>
-      </button>
-      <ul class="menu-list" id="menuList">
-        <li><button data-focus="reset">Explore</button></li>
-        <li><button data-focus="about">About</button></li>
-        <li><button data-focus="projects">Work</button></li>
-        <li><button data-focus="exp">Experience</button></li>
-        <li><button data-focus="cv">CV</button></li>
-        <li><button data-focus="contact">Contact</button></li>
-      </ul>
-    </nav>
-
-    <div class="zoom-controls hud-item" role="group" aria-label="Zoom">
-      <button id="zoomIn" aria-label="Zoom in">+</button>
-      <button id="zoomOut" aria-label="Zoom out">&minus;</button>
-      <button id="zoomReset" aria-label="Reset view" title="Reset view">&#8635;</button>
+    <div>
+      <div class="xr-card">
+        <p class="card-label">✦ Currently exploring</p>
+        <p>These days I'm buried in <strong>research papers</strong> on <strong>AI</strong> and <strong>agentic AI</strong>, chasing where all of this is actually heading and what it means for the humans on the other side of the screen. On the side, I'm falling down the rabbit hole of <strong>eye tracking</strong>, how the eyes quietly leak what the brain is thinking before you even say it out loud. Favorite spot to work: right at the intersection of perception, intelligence, and interaction.</p>
+      </div>
+      <div class="edu-block">
+        <h4>Masters in Interactive Media Technologies</h4>
+        <p>KTH Kungliga Tekniska Högskolan, Sweden</p>
+        <span class="current-badge" style="background:var(--gold);margin-top:0.5rem;display:inline-block;">2025-2027</span>
+      </div>
+      <div class="edu-block">
+        <h4>Bachelor of Science in Computer Engineering</h4>
+        <p>Technical University of Sofia, Bulgaria</p>
+        <span class="current-badge" style="background:var(--red);margin-top:0.5rem;display:inline-block;">2018-2022</span>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- Hover info tip (mini floating card) -->
-  <div class="info-tip" id="infoTip" role="tooltip" hidden></div>
-
-  <!-- Detail panel: opens over the network for any node -->
-  <div class="detail-panel" id="detailPanel" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="detail-scrim"></div>
-    <div class="detail-frame">
-      <div class="detail-topbar">
-        <button class="detail-back" id="detailBack" aria-label="Back to network">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
-          <span>back to network</span>
-        </button>
-        <button class="detail-close" id="detailClose" aria-label="Close">&times;</button>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="exp-layout">
+    <div class="exp-intro fade-section">
+      <p class="section-label">Career path</p>
+      <h2 class="section-title">My Experiences</h2>
+      <p>From internships to self-driven projects, I've built experience designing for different contexts, from beauty and fashion websites to apps tackling real-world issues. I'm always looking forward to new challenges that let me mix creativity with problem-solving.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item pending" data-start="2026-06-30" data-end="2026-08-28">
+        <div class="timeline-dot pending"></div>
+        <p class="timeline-date">30 Jun - 28 Aug 2026 <span class="timeline-location">Zürich, Switzerland</span></p>
+        <h3 class="timeline-title">Research Intern at ETH <span class="upcoming-badge" data-auto-badge>Upcoming</span></h3>
+        <div class="timeline-body"><p>Joining the Faculty of Computer Science to conduct research at the intersection of Human-Computer Interaction (HCI) and Artificial Intelligence (AI), advancing human-centered intelligent systems.</p></div>
       </div>
-      <div class="detail-body" id="detailBody">
-        <!-- Content is populated by JS from #contentVault + rendered from data -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">18 - 28 Apr 2026 <span class="timeline-location">Stockholm, Sweden</span></p>
+        <h3 class="timeline-title">Finalist - National Startup Buildathon (Antler)</h3>
+        <div class="timeline-body"><p>Reached the finals after winning the KTH round, and presented our project at the AWS Stockholm office. With my team, we built a security platform for early-stage startups powered by agentic AI. Using Python with LangGraph, our autonomous agents scan codebases for vulnerabilities, flag critical risks, and suggest concrete fixes, making "secure by design" practical for founders without a dedicated security team.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">5 - 6 Dec 2025 <span class="timeline-location">Stockholm, Sweden</span></p>
+        <h3 class="timeline-title">Society Challenge - Norrsken Fixathon</h3>
+        <div class="timeline-body"><p>Joined the 48-hour Fixathon at Norrsken in the Society Challenge track. My team designed a platform that helps anyone find honest, dignified work by matching real-world skills to the people who need them, inspired by the Help Café model of turning everyday abilities into job opportunities.</p></div>
+      </div>
+      <div class="timeline-item current">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">Oct 2025 - Present <span class="timeline-location">Stockholm, Sweden</span></p>
+        <h3 class="timeline-title">Frontend Developer at KTH AI Society <span class="current-badge">Now</span></h3>
+        <div class="timeline-body"><p>Collaborating with the team to build and improve the society's website.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">Mar 2025 - Jul 2025 <span class="timeline-location">Stockholm, Sweden</span></p>
+        <h3 class="timeline-title">Intelligent Apps Sweden AB</h3>
+        <div class="timeline-body"><p>Collaborated with cross-functional teams to optimize performance and enhance user's experience.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">Mar 2025 - Jul 2025 <span class="timeline-location">Stockholm, Sweden</span></p>
+        <h3 class="timeline-title">UX/UI Designer Intern at Coursfy</h3>
+        <div class="timeline-body"><p>Designed an E-learning platform alongside the team, focusing on intuitive flows and accessible interfaces.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">Oct 2024 - June 2025 <span class="timeline-location">Dubai, UAE</span></p>
+        <h3 class="timeline-title">UX/UI Designer Intern at Peekabox</h3>
+        <div class="timeline-body"><ul>
+          <li>Designed user-friendly UI/UX for web and mobile in an Agile/Scrum environment.</li>
+          <li>Conducted user research, wireframing, and prototyping using Figma.</li>
+          <li>Developed and tested frontend components to ensure smooth interactions.</li>
+          <li>Collaborated with developers to ensure seamless design implementation.</li>
+          <li>Assisted in transitioning designs into code.</li>
+        </ul></div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- ================================================================
-       CONTENT VAULT
-       All prose, case-study markup, and cluster/topic copy live here.
-       The network engine reads these blocks by data-src="<id>" and
-       injects them into the detail panel on demand.
-
-       Nothing here is deleted from the original portfolio — case studies
-       are preserved verbatim, only re-wrapped for the new experience.
-       ================================================================ -->
-  <div id="contentVault" hidden>
-
-    <!-- ========== CLUSTER: DESIGN ========== -->
-    <template data-src="c-design">
-      <p class="section-label">Cluster</p>
-      <h2 class="detail-title">Design.</h2>
-      <p class="detail-lede">Where logic meets feel. I design digital experiences that are clean, playful, and human — from wireframes to fully prototyped flows.</p>
-      <p class="detail-body-text">What began as tinkering with layouts and colors quickly turned into a passion for crafting experiences that feel human, playful, and meaningful. My engineering background gave me the technical mindset to understand how things work; design lets me reimagine how they should <em>feel</em>.</p>
-      <p class="detail-body-text">I've worked on everything from redesigning fashion and beauty websites to building apps that tackle real-world challenges like food waste. Every project reminds me that design isn't really about pixels — it's about people.</p>
-      <div class="node-chip-row" data-follow="topics-of:design"></div>
-      <hr class="detail-divider"/>
-      <p class="section-label">Projects in this space</p>
-      <div class="detail-projects" data-follow="projects-of:design"></div>
-    </template>
-
-    <!-- ========== CLUSTER: TECHNOLOGY ========== -->
-    <template data-src="c-tech">
-      <p class="section-label">Cluster</p>
-      <h2 class="detail-title">Technology.</h2>
-      <p class="detail-lede">I started as a Computer Science Engineer — and never left the code behind. My tools bridge the gap between how something is built and how it feels to use.</p>
-      <p class="detail-body-text">Bachelor of Science in Computer Engineering from the Technical University of Sofia, Bulgaria. I write in Python, C#, and Java; I build in Unity for AR/VR; I prototype in Figma; and I keep learning whatever the next problem needs.</p>
-      <div class="node-chip-row" data-follow="topics-of:tech"></div>
-      <hr class="detail-divider"/>
-      <p class="section-label">Projects using this stack</p>
-      <div class="detail-projects" data-follow="projects-of:tech"></div>
-    </template>
-
-    <!-- ========== CLUSTER: HCI ========== -->
-    <template data-src="c-hci">
-      <p class="section-label">Cluster</p>
-      <h2 class="detail-title">Human&ndash;Computer Interaction.</h2>
-      <p class="detail-lede">The thread that ties everything together. I care about how people <em>experience</em> a system — the moments of clarity, confusion, delight, and trust.</p>
-      <p class="detail-body-text">Currently completing a Master's in Interactive Media Technology at KTH Kungliga Tekniska Högskolan, Sweden — deep-diving into interaction design, XR, and human-centered systems.</p>
-      <div class="node-chip-row" data-follow="topics-of:hci"></div>
-      <hr class="detail-divider"/>
-      <p class="section-label">Projects in this space</p>
-      <div class="detail-projects" data-follow="projects-of:hci"></div>
-    </template>
-
-    <!-- ========== CLUSTER: AI / RESEARCH ========== -->
-    <template data-src="c-ai">
-      <p class="section-label">Cluster</p>
-      <h2 class="detail-title">AI &amp; Research.</h2>
-      <p class="detail-lede">The frontier I'm most curious about — where intelligent systems learn to work <em>with</em> people rather than around them.</p>
-      <p class="detail-body-text">Diving deeper into <strong>XR</strong> and finding ways to weave it into everything else I know. On the side, still writing a paper about <strong>AI ethics</strong> — why AI should amplify human potential, not replace it. Fresh off a summer of <strong>research at ETH</strong>, I'm now spending most of my days deep in <strong>AI</strong>, <strong>agentic systems</strong>, and reading (a lot of) papers — currently exploring <strong>eye tracking with neural networks</strong>, and the sweet spot where perception meets intelligence.</p>
-      <div class="node-chip-row" data-follow="topics-of:ai"></div>
-    </template>
-
-    <!-- ========== CLUSTER: EXPERIENCES ========== -->
-    <template data-src="c-exp">
-      <p class="section-label">Cluster</p>
-      <h2 class="detail-title">Experiences.</h2>
-      <p class="detail-lede">From internships to research to buildathons — every role has been a chance to mix creativity with problem-solving.</p>
-      <div class="detail-timeline" id="detailTimeline">
-        <!-- Rendered from EXPERIENCES data (auto-generates upcoming / in-progress / completed states) -->
+<!-- WORK -->
+<section id="work">
+  <div class="work-header fade-section">
+    <div>
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Selected Work</h2>
+    </div>
+    <div class="slider-nav">
+      <button class="slider-btn" id="btnPrev" aria-label="Previous">&#8592;</button>
+      <button class="slider-btn" id="btnNext" aria-label="Next">&#8594;</button>
+    </div>
+  </div>
+  <div class="projects-slider-wrap">
+    <div class="projects-slider" id="projectsSlider">
+      <div class="project-card card-1" onclick="openModal('modal-ar')">
+        <div class="project-thumb">Almost Real</div>
+        <div class="project-info"><h3>Almost Real - AR Furniture App</h3><p>Android AR app to visualise 3D furniture in your real space before buying.</p><span class="project-type">AR · Unity · C#</span><div class="open-hint"><svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View case study</div></div>
       </div>
-    </template>
-
-    <!-- ========== CLUSTER: WHO I AM ========== -->
-    <template data-src="c-about">
-      <p class="section-label">Cluster</p>
-      <h2 class="detail-title">Who I Am.</h2>
-      <p class="detail-lede">Noor Salama &mdash; CS Engineer &amp; UX/UI Designer. Based in Stockholm.</p>
-      <p class="detail-body-text">I'm Noor Salama, and I love blending logic with creativity, turning wireframes into experiences that feel fun, intuitive, and a little unexpected. With a background in coding (Python, C#, Java), I bridge the gap between design and development.</p>
-      <p class="detail-body-text">I started my journey as a Computer Science Engineer, where I fell in love with solving problems through logic and code. But along the way, I realized something was missing, the spark of creativity. That's when I discovered UX/UI design.</p>
-      <p class="detail-body-text">Being Bulgarian, and having been born and raised in the UAE, I've grown up surrounded by a mix of cultures, perspectives, and aesthetics. This diversity naturally shapes how I approach design: open-minded, curious, and always thinking about different users and experiences.</p>
-      <p class="detail-body-text">Outside of design &amp; tech you'll probably find me on the ice figure skating, in the water swimming, in the mountains, or enjoying a good tennis match. I'm also deeply connected to music &mdash; it's a constant source of inspiration in both my life and my creative work.</p>
-      <p class="detail-body-text">Now, I'm on a mission to bring a little funk into the digital world &mdash; designs that are not only functional but also spark joy, curiosity, and connection.</p>
-
-      <hr class="detail-divider"/>
-      <p class="section-label">Education</p>
-      <div class="edu-row">
-        <div class="edu-block">
-          <h4>Master's in Interactive Media Technologies</h4>
-          <p>KTH Kungliga Tekniska Högskolan &middot; Stockholm, Sweden</p>
-          <span class="pill pill-accent">2025 &ndash; 2027</span>
-        </div>
-        <div class="edu-block">
-          <h4>BSc in Computer Engineering</h4>
-          <p>Technical University of Sofia &middot; Bulgaria</p>
-          <span class="pill pill-muted">2018 &ndash; 2022</span>
-        </div>
+      <div class="project-card card-2" onclick="openModal('modal-vr')">
+        <div class="project-thumb">Mini-World</div>
+        <div class="project-info"><h3>Mini-World - Educational VR Game</h3><p>VR garden where players explore insects, photograph them, and complete a quiz.</p><span class="project-type">VR · Unity · XR</span><div class="open-hint"><svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View case study</div></div>
       </div>
-
-      <hr class="detail-divider"/>
-      <p class="section-label">Off-screen</p>
-      <div class="hobby-grid">
-        <div><span class="hobby-label">Figure skating</span><span class="hobby-desc">On the ice whenever the season allows.</span></div>
-        <div><span class="hobby-label">Swimming</span><span class="hobby-desc">Long laps to clear the head.</span></div>
-        <div><span class="hobby-label">Mountains</span><span class="hobby-desc">Hiking &amp; disappearing into altitude.</span></div>
-        <div><span class="hobby-label">Tennis</span><span class="hobby-desc">A good match is a great reset.</span></div>
-        <div><span class="hobby-label">Music</span><span class="hobby-desc">A constant source of inspiration.</span></div>
+      <div class="project-card card-3" onclick="openModal('modal-payment')">
+        <div class="project-thumb">PayPay</div>
+        <div class="project-info"><h3>PayPay - Online Payment Landing Page</h3><p>A sleek, trust-forward landing page for an online banking &amp; payments product.</p><span class="project-type">UI Design · Web</span><div class="open-hint"><svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View case study</div></div>
       </div>
-    </template>
-
-    <!-- ========== TOPICS (small hover-panels) — auto-generated by JS from TOPIC_META ========== -->
-
-    <!-- ========== ABOUT SUB-NODES ========== -->
-    <template data-src="a-exploring">
-      <p class="section-label">Currently exploring</p>
-      <h2 class="detail-title">What's on my desk right now.</h2>
-      <p class="detail-lede">Diving deeper into <strong>XR</strong> and finding ways to weave it into everything else I know. On the side, still writing a paper about <strong>AI ethics</strong> &mdash; why AI should amplify human potential, not replace it. Fresh off a summer of <strong>research at ETH</strong>, I'm now spending most of my days deep in <strong>AI</strong>, <strong>agentic systems</strong>, and reading (a lot of) papers &mdash; currently exploring <strong>eye tracking with neural networks</strong>, and the sweet spot where perception meets intelligence.</p>
-    </template>
-
-    <!-- ========== EXPERIENCES ========== -->
-    <template data-src="e-eth">
-      <p class="section-label" data-exp-badge="e-eth"></p>
-      <h2 class="detail-title">Research Intern at ETH.</h2>
-      <p class="detail-lede">30 Jun &ndash; 28 Aug 2026 &middot; Zürich, Switzerland</p>
-      <p class="detail-body-text">Joining the Faculty of Computer Science to conduct research at the intersection of Human-Computer Interaction (HCI) and Artificial Intelligence (AI), advancing human-centered intelligent systems.</p>
-      <div class="node-chip-row" data-follow="topics-of:e-eth"></div>
-    </template>
-
-    <template data-src="e-antler">
-      <p class="section-label">Finalist</p>
-      <h2 class="detail-title">National Startup Buildathon &mdash; Antler.</h2>
-      <p class="detail-lede">18 &ndash; 28 Apr 2026 &middot; Stockholm, Sweden</p>
-      <p class="detail-body-text">Reached the finals after winning the KTH round, and presented our project at the AWS Stockholm office. With my team, we built a security platform for early-stage startups powered by agentic AI. Using Python with LangGraph, our autonomous agents scan codebases for vulnerabilities, flag critical risks, and suggest concrete fixes &mdash; making "secure by design" practical for founders without a dedicated security team.</p>
-      <div class="node-chip-row" data-follow="topics-of:e-antler"></div>
-    </template>
-
-    <template data-src="e-norrsken">
-      <p class="section-label">Society Challenge</p>
-      <h2 class="detail-title">Norrsken Fixathon.</h2>
-      <p class="detail-lede">5 &ndash; 6 Dec 2025 &middot; Stockholm, Sweden</p>
-      <p class="detail-body-text">Joined the 48-hour Fixathon at Norrsken in the Society Challenge track. My team designed a platform that helps anyone find honest, dignified work by matching real-world skills to the people who need them &mdash; inspired by the Help Café model of turning everyday abilities into job opportunities.</p>
-    </template>
-
-    <template data-src="e-kthai">
-      <p class="section-label" data-exp-badge="e-kthai"></p>
-      <h2 class="detail-title">Frontend Developer &mdash; KTH AI Society.</h2>
-      <p class="detail-lede">Oct 2025 &ndash; Present &middot; Stockholm, Sweden</p>
-      <p class="detail-body-text">Collaborating with the team to build and improve the society's website.</p>
-      <div class="node-chip-row" data-follow="topics-of:e-kthai"></div>
-    </template>
-
-    <template data-src="e-intelli">
-      <p class="section-label">Role</p>
-      <h2 class="detail-title">Intelligent Apps Sweden AB.</h2>
-      <p class="detail-lede">Mar 2025 &ndash; Jul 2025 &middot; Stockholm, Sweden</p>
-      <p class="detail-body-text">Collaborated with cross-functional teams to optimize performance and enhance user's experience.</p>
-    </template>
-
-    <template data-src="e-coursfy">
-      <p class="section-label">Internship</p>
-      <h2 class="detail-title">UX/UI Designer Intern &mdash; Coursfy.</h2>
-      <p class="detail-lede">Mar 2025 &ndash; Jul 2025 &middot; Stockholm, Sweden</p>
-      <p class="detail-body-text">Designed an E-learning platform alongside the team, focusing on intuitive flows and accessible interfaces.</p>
-    </template>
-
-    <template data-src="e-peekabox">
-      <p class="section-label">Internship</p>
-      <h2 class="detail-title">UX/UI Designer Intern &mdash; Peekabox.</h2>
-      <p class="detail-lede">Oct 2024 &ndash; Jun 2025 &middot; Dubai, UAE</p>
-      <ul class="detail-list">
-        <li>Designed user-friendly UI/UX for web and mobile in an Agile/Scrum environment.</li>
-        <li>Conducted user research, wireframing, and prototyping using Figma.</li>
-        <li>Developed and tested frontend components to ensure smooth interactions.</li>
-        <li>Collaborated with developers to ensure seamless design implementation.</li>
-        <li>Assisted in transitioning designs into code.</li>
-      </ul>
-    </template>
-
-    <!-- ========== PROJECTS (case studies preserved verbatim) ========== -->
-
-    <!-- Project: Almost Real -->
-    <template data-src="p-ar">
-      <div class="case-hero case-hero-ar">
-        <div class="case-hero-content">
-          <p class="project-number">Project 01 &middot; Bachelor's Thesis</p>
-          <h2 class="case-title">Almost Real</h2>
-          <p class="case-sub">AR Furniture Space Configuration App</p>
-        </div>
+      <div class="project-card card-4" onclick="openModal('modal-cafe')">
+        <div class="project-thumb">Le Petite Café</div>
+        <div class="project-info"><h3>Le Petite Café</h3><p>A website for ordering from a boutique café, browse the menu, customise, and checkout online.</p><span class="project-type">UX/UI · Web</span><div class="open-hint"><svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View case study</div></div>
       </div>
-      <div class="case-meta">
+      <div class="project-card card-5" onclick="openModal('modal-muzic')">
+        <div class="project-thumb">Muzic</div>
+        <div class="project-info"><h3>Muzic App</h3><p>Dark-mode music streaming app with rich album art and immersive playback UI.</p><span class="project-type">UI Design · Mobile</span><div class="open-hint"><svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View case study</div></div>
+      </div>
+      <div class="project-card card-6" onclick="openModal('modal-foodz')">
+        <div class="project-thumb">Foodz</div>
+        <div class="project-info"><h3>Foodz - Delivery App</h3><p>End-to-end food delivery mobile app: browse, cart, track, and review.</p><span class="project-type">UX/UI · Mobile</span><div class="open-hint"><svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View case study</div></div>
+      </div>
+      <div class="project-card card-7" onclick="openModal('modal-elie')">
+        <div class="project-thumb">Elie Saab</div>
+        <div class="project-info"><h3>Elie Saab - About Page</h3><p>Luxury fashion web design for the Elie Saab brand "About" section, editorial &amp; refined.</p><span class="project-type">Web Design · Fashion</span><div class="open-hint"><svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View case study</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slider-progress-wrap">
+    <div class="slider-progress-bar" id="sliderProgress"></div>
+  </div>
+  <p class="slider-counter">Project <span id="sliderCurrent">1</span> of <span id="sliderTotal">7</span>. Drag or use arrows.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <a href="#" class="ns-logo" aria-label="Noor Salama"><span class="n">N</span><span class="s">S</span><span class="dot"></span></a>
+      <p class="footer-tagline">CS Engineer · UX/UI Designer · Based in Stockholm</p>
+    </div>
+    <div class="footer-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+    </div>
+    <div class="footer-socials">
+      <a href="https://mail.google.com/mail/u/1/#inbox?compose=GTvVlcSDbhKxjVTwknlSKwtHlZtHddVCvRgcVwddpmpBnhjCPwMszzsXDCXKdNHLwLrJmsqBDvwQc" class="social-icon" title="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+      <a href="https://www.linkedin.com/in/noorsal" target="_blank" class="social-icon" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      <a href="https://www.behance.net/noorsal1" target="_blank" class="social-icon" title="Behance"><svg viewBox="0 0 50 50" style="width:15px;height:15px;fill:currentColor"><path d="M 9 4 C 6.24 4 4 6.24 4 9 L 4 41 C 4 43.76 6.24 46 9 46 L 41 46 C 43.76 46 46 43.76 46 41 L 46 9 C 46 6.24 43.76 4 41 4 L 9 4 z M 13 13 L 21.199219 13 C 23.699219 13 28 13.100391 28 18.900391 C 28 21.400391 26.600781 22.699609 25.300781 23.599609 C 27.300781 24.299609 29 25.900391 29 29.400391 C 29 35.500391 24.099609 36 21.099609 36 L 13 36 L 13 13 z M 31 15 L 40 15 L 40 17 L 31 17 L 31 15 z M 35.5 19 C 39.1 19 42 21.9 42 25.5 C 42 25.9 42 26.300781 41.800781 26.800781 L 31.300781 26.800781 C 31.500781 29.200781 33.300781 30.300781 35.300781 30.300781 C 36.800781 30.300781 37.799219 29.699609 38.699219 28.599609 L 41.599609 30.099609 C 40.099609 32.299609 37.9 33.5 35.5 33.5 C 31.4 33.5 28 30.4 28 26 C 28 21.7 31.3 19 35.5 19 z M 35.300781 22 C 33.500781 22 31.900391 23.099219 31.400391 24.699219 L 39 24.699219 C 38.6 22.999219 37.100781 22 35.300781 22 z M 17 16 L 17 22 L 20.699219 22 C 22.099219 22 23.599609 21.500781 23.599609 19.300781 C 23.599609 16.700781 21.699219 16 20.199219 16 L 17 16 z M 17 25 L 17 32.699219 L 21 32.699219 C 22.8 32.699219 24.599609 31.999219 24.599609 29.699219 C 24.599609 27.299219 22.699219 25 20.699219 25 L 17 25 z"/></svg></a>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <p>© 2026 <span>Noor Salama</span>. All rights reserved.</p>
+    <p>NS.</p>
+  </div>
+</footer>
+
+<!-- MODAL 1: ALMOST REAL (AR) -->
+<div class="modal-overlay" id="modal-ar" onclick="closeOnBg(event,'modal-ar')">
+  <div class="modal">
+    <div class="modal-hero modal-hero-ar">
+      <button class="modal-close" onclick="closeModal('modal-ar')">✕</button>
+      <div class="modal-hero-content">
+        <p class="project-number">Project 01 · Bachelor's Thesis</p>
+        <h2>Almost Real</h2>
+        <p class="hero-sub">AR Furniture Space Configuration App</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-meta">
         <span class="meta-tag meta-gold">Augmented Reality</span>
         <span class="meta-tag meta-gold">Unity 3D</span>
         <span class="meta-tag meta-gold">C#</span>
@@ -330,42 +1515,47 @@
         <span class="meta-tag meta-gold">Microsoft Azure</span>
         <span class="meta-tag meta-gold">Addressables</span>
         <span class="meta-tag meta-outline">Android</span>
-        <span class="meta-tag meta-outline">Bachelor's Thesis &middot; 2022</span>
+        <span class="meta-tag meta-outline">Bachelor's Thesis · 2022</span>
       </div>
       <div class="case-full"><p class="cc-label">Overview</p><h5>What is Almost Real?</h5><p>Almost Real is an Android AR application developed as my Bachelor's thesis at the Technical University of Sofia. It allows users to visualise 3D furniture models placed in their real environment using their smartphone camera, without ever visiting a store.</p><p>Think of it as a personal IKEA Place, but built from scratch. Users scan their room, select furniture from a scrollable catalogue, spawn it into their space, and then move, scale, and rotate it until it feels right, all in real time.</p></div>
       <div class="case-grid">
         <div class="case-card"><p class="cc-label">The Problem</p><h5>Online shopping lacks spatial context</h5><p>Traditional e-commerce only shows flat images of furniture. Customers can't know if a sofa will fit their living room or match their existing decor until it arrives, often leading to costly returns and frustration.</p></div>
-        <div class="case-card"><p class="cc-label">The Solution</p><h5>Try before you buy, at home</h5><p>Almost Real uses markerless AR to scan real surfaces and overlay photorealistic 3D furniture models. Users get a true sense of size, proportion, and style &mdash; from their couch, at any time.</p></div>
+        <div class="case-card"><p class="cc-label">The Solution</p><h5>Try before you buy, at home</h5><p>Almost Real uses markerless AR to scan real surfaces and overlay photorealistic 3D furniture models. Users get a true sense of size, proportion, and style - from their couch, at any time.</p></div>
       </div>
       <div class="case-full"><p class="cc-label">Key Features</p><h5>What users can do</h5><ul>
-        <li><strong>Spawn furniture</strong> &mdash; tap any item from the horizontal scroll catalogue to place it exactly where the AR marker sits.</li>
-        <li><strong>Move it</strong> &mdash; drag the selected item across the detected plane to reposition it anywhere in the room.</li>
-        <li><strong>Scale it</strong> &mdash; use the + / &minus; scale buttons to resize the object bigger or smaller.</li>
-        <li><strong>Rotate it</strong> &mdash; clockwise or anti-clockwise rotation with dedicated controls.</li>
-        <li><strong>Delete it</strong> &mdash; tap any spawned item and hit "Delete Item" to remove it.</li>
-        <li><strong>Refresh</strong> &mdash; reset the entire scene and start fresh.</li>
-        <li><strong>Info panel</strong> &mdash; a built-in guide helps first-time users get started instantly.</li>
+        <li><strong>Spawn furniture</strong> - tap any item from the horizontal scroll catalogue to place it exactly where the AR marker sits.</li>
+        <li><strong>Move it</strong> - drag the selected item across the detected plane to reposition it anywhere in the room.</li>
+        <li><strong>Scale it</strong> - use the + / − scale buttons to resize the object bigger or smaller.</li>
+        <li><strong>Rotate it</strong> - clockwise or anti-clockwise rotation with dedicated controls.</li>
+        <li><strong>Delete it</strong> - tap any spawned item and hit "Delete Item" to remove it.</li>
+        <li><strong>Refresh</strong> - reset the entire scene and start fresh.</li>
+        <li><strong>Info panel</strong> - a built-in guide helps first-time users get started instantly.</li>
       </ul></div>
-      <div class="dark-card"><p class="cc-label">Tech Stack &amp; Architecture</p><h5>How it was built</h5><p>The app uses <strong>Google ARCore</strong> via Unity's AR Foundation for markerless plane detection. 3D models were sourced from Sketchfab, imported and configured as prefabs in Unity, then grouped as <strong>Addressables</strong> &mdash; uploaded to <strong>Microsoft Azure Blob Storage</strong> so they load dynamically at runtime without bloating the APK.</p><p>The architecture centres on five core classes: <em>PlacementIndicator</em> (raycast + marker), <em>DataHandler</em> (model list + button creation), <em>InputManagerScript</em> (all touch interactions), <em>AssetLoader</em> (async addressable loading), and <em>Item</em> (scriptable objects holding prefab + sprite data).</p><div class="pill-row"><span class="pill pill-cream">Unity 2020.3</span><span class="pill pill-cream">AR Foundation</span><span class="pill pill-cream">ARCore XR Plugin</span><span class="pill pill-cream">Microsoft Azure</span><span class="pill pill-cream">Addressables</span><span class="pill pill-cream">DOTween</span><span class="pill pill-cream">C# / Scriptable Objects</span><span class="pill pill-cream">Android 7.0+</span></div></div>
+      <div class="dark-card"><p class="cc-label">Tech Stack & Architecture</p><h5>How it was built</h5><p>The app uses <strong>Google ARCore</strong> via Unity's AR Foundation for markerless plane detection. 3D models were sourced from Sketchfab, imported and configured as prefabs in Unity, then grouped as <strong>Addressables</strong> - uploaded to <strong>Microsoft Azure Blob Storage</strong> so they load dynamically at runtime without bloating the APK.</p><p>The architecture centres on five core classes: <em>PlacementIndicator</em> (raycast + marker), <em>DataHandler</em> (model list + button creation), <em>InputManagerScript</em> (all touch interactions), <em>AssetLoader</em> (async addressable loading), and <em>Item</em> (scriptable objects holding prefab + sprite data).</p><div class="pill-row"><span class="pill pill-cream">Unity 2020.3</span><span class="pill pill-cream">AR Foundation</span><span class="pill pill-cream">ARCore XR Plugin</span><span class="pill pill-cream">Microsoft Azure</span><span class="pill pill-cream">Addressables</span><span class="pill pill-cream">DOTween</span><span class="pill pill-cream">C# / Scriptable Objects</span><span class="pill pill-cream">Android 7.0+</span></div></div>
       <div class="case-grid">
         <div class="case-card"><p class="cc-label">Existing Apps</p><h5>What was missing</h5><ul><li>IKEA Place only includes ~50% of IKEA's actual catalogue and doesn't redirect to the store to purchase.</li><li>Houzz is powerful but hard to navigate, and its floor plan tool failed in furnished rooms.</li><li>Neither app gave users a truly seamless try-on-to-checkout flow.</li></ul></div>
         <div class="case-card"><p class="cc-label">My Approach</p><h5>What I did differently</h5><ul><li>Built a minimal UI that surfaces the catalogue without obscuring the AR view.</li><li>Used cloud-hosted Addressables so models load on demand, keeping the app lightweight.</li><li>Designed full interaction controls (move, scale, rotate, delete) accessible with one hand.</li></ul></div>
       </div>
-      <div class="case-full"><p class="cc-label">Testing &amp; Outcomes</p><h5>What I learned from testing</h5><ul><li>Initial object spawn sizes were off &rarr; resolved by calibrating each prefab's scale in the Unity inspector before building.</li><li>Scene switching broke the AR marker &mdash; fixed by attaching the PlacementIndicator script directly to the AR Camera.</li><li>Azure connection required exact catalog files in the blob container &mdash; proper addressables rebuild resolved load errors.</li><li>Final validation: 3D objects spawn, move, scale, rotate, and delete successfully across multiple Android devices.</li></ul></div>
+      <div class="case-full"><p class="cc-label">Testing & Outcomes</p><h5>What I learned from testing</h5><ul><li>Initial object spawn sizes were off → resolved by calibrating each prefab's scale in the Unity inspector before building.</li><li>Scene switching broke the AR marker - fixed by attaching the PlacementIndicator script directly to the AR Camera.</li><li>Azure connection required exact catalog files in the blob container - proper addressables rebuild resolved load errors.</li><li>Final validation: 3D objects spawn, move, scale, rotate, and delete successfully across multiple Android devices.</li></ul></div>
       <div class="case-full"><p class="cc-label">Future Scope</p><h5>Where Almost Real could go next</h5><ul><li>iOS support (currently Android only).</li><li>Direct integration with a furniture store's live product catalogue.</li><li>In-app purchase / cart redirect functionality.</li><li>Multi-language support.</li><li>Auto-generated 3D models from product images using future ML pipelines.</li><li>Would definitely redesign it, to a better modern-looking design.</li></ul></div>
-      <div class="case-full"><p class="cc-label">Screenshots Demo</p><h5>Watch it in action</h5><div class="images"><img src="Picture1.jpg" class="case-image" alt="Almost Real screenshot 1"/><img src="Picture2.jpg" class="case-image" alt="Almost Real screenshot 2"/><img src="Picture3.jpg" class="case-image" alt="Almost Real screenshot 3"/><img src="Picture4.jpg" class="case-image" alt="Almost Real screenshot 4"/><img src="Picture5.jpg" class="case-image" alt="Almost Real screenshot 5"/><img src="Picture6.jpg" class="case-image" alt="Almost Real screenshot 6"/><img src="Picture7.jpg" class="case-image" alt="Almost Real screenshot 7"/><img src="Picture8.png" class="case-image" alt="Almost Real screenshot 8"/></div></div>
-    </template>
+      <div class="case-full"><p class="cc-label">Screenshots Demo</p><h5>Watch it in action</h5><div class="images"><img src="Picture1.jpg" class="case-image"><img src="Picture2.jpg" class="case-image"><img src="Picture3.jpg" class="case-image"><img src="Picture4.jpg" class="case-image"><img src="Picture5.jpg" class="case-image"><img src="Picture6.jpg" class="case-image"><img src="Picture7.jpg" class="case-image"><img src="Picture8.png" class="case-image"></div></div>
+    </div>
+  </div>
+</div>
 
-    <!-- Project: Mini-World -->
-    <template data-src="p-vr">
-      <div class="case-hero case-hero-vr">
-        <div class="case-hero-content">
-          <p class="project-number">Project 02 &middot; XR Course &middot; Master's</p>
-          <h2 class="case-title">Mini-World</h2>
-          <p class="case-sub">Educational VR Garden Game</p>
-        </div>
+<!-- MODAL 2: MINI-WORLD (VR) -->
+<div class="modal-overlay" id="modal-vr" onclick="closeOnBg(event,'modal-vr')">
+  <div class="modal">
+    <div class="modal-hero modal-hero-vr">
+      <button class="modal-close" onclick="closeModal('modal-vr')">✕</button>
+      <div class="modal-hero-content">
+        <p class="project-number" style="color:rgba(255,255,255,0.75);">Project 02 · XR Course - Master's</p>
+        <h2 style="color:#fff;">Mini-World</h2>
+        <p class="hero-sub" style="color:rgba(255, 255, 255,0.88);">Educational VR Garden Game</p>
       </div>
-      <div class="case-meta">
+    </div>
+    <div class="modal-body">
+      <div class="modal-meta">
         <span class="meta-tag meta-red">Virtual Reality</span>
         <span class="meta-tag meta-red">Unity 3D</span>
         <span class="meta-tag meta-red">XR Interaction Toolkit</span>
@@ -373,189 +1563,240 @@
         <span class="meta-tag meta-outline">Team of 3</span>
         <span class="meta-tag meta-outline">Extended Reality Course DH2310</span>
       </div>
-      <div class="case-full"><p class="cc-label">Implemented in the project</p><h5>Features</h5><div class="points-row"><div class="point-badge"><div class="check">&#10003;</div>XR Game (VR)</div><div class="point-badge"><div class="check">&#10003;</div>Implemented Logging (CSV)</div><div class="point-badge"><div class="check">&#10003;</div>Multiple Levels with Start Menu</div></div></div>
-      <div class="case-full"><p class="cc-label">Overview</p><h5>What is Mini-World?</h5><p>Mini-World is an educational VR game developed as part of the Extended Reality course, built in a team of three. Players are shrunk down to insect size and dropped into a lush virtual garden, a world that feels alive, curious, and full of things to discover.</p><p>The game combines exploration, photography, and quiz-based interactions to form a complete learning loop: discover &rarr; capture &rarr; learn &rarr; test. Its main goal is to let children explore the hidden world of insects, helping them discover and understand organisms that are normally beyond our sight. To ensure a safe and immersive experience, the project was specifically designed in VR.</p></div>
+      <div class="case-full"><p class="cc-label">Implemented in the project</p><h5>Features</h5><div class="points-row"><div class="point-badge"><div class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>XR Game (VR)</div><div class="point-badge"><div class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>Implemented Logging (CSV)</div><div class="point-badge"><div class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>Multiple Levels with Start Menu</div></div></div>
+      <div class="case-full"><p class="cc-label">Overview</p><h5>What is Mini-World?</h5><p>Mini-World is an educational VR game developed as part of the Extended Reality course, built in a team of three. Players are shrunk down to insect size and dropped into a lush virtual garden, a world that feels alive, curious, and full of things to discover.</p><p>The game combines exploration, photography, and quiz-based interactions to form a complete learning loop: discover → capture → learn → test. Its main goal is to let children explore the hidden world of insects, helping them discover and understand organisms that are normally beyond our sight. To ensure a safe and immersive experience, the project was specifically designed in VR.</p></div>
       <div class="case-grid">
-        <div class="case-card"><p class="cc-label">Level 1 &mdash; The Garden</p><h5>Explore &amp; Discover</h5><p>Players roam a virtual garden and encounter different insects hidden throughout the environment. Interacting with each insect reveals a fun educational fact about it. Players can also take in-game photos of each insect they find, which get stored in their personal <strong>journal</strong>, building a collection as they explore.</p></div>
-        <div class="case-card"><p class="cc-label">Level 2 &mdash; The Quiz</p><h5>Test Your Knowledge</h5><p>After exploring the garden, players enter Level 2 &mdash; a short quiz that tests what they learned from their insect encounters. The questions are based on the facts discovered during exploration, reinforcing the learning through active recall in a playful, low-pressure format.</p></div>
+        <div class="case-card"><p class="cc-label">Level 1 - The Garden</p><h5>Explore & Discover</h5><p>Players roam a virtual garden and encounter different insects hidden throughout the environment. Interacting with each insect reveals a fun educational fact about it. Players can also take in-game photos of each insect they find, which get stored in their personal <strong>journal</strong>, building a collection as they explore.</p></div>
+        <div class="case-card"><p class="cc-label">Level 2 - The Quiz</p><h5>Test Your Knowledge</h5><p>After exploring the garden, players enter Level 2 - a short quiz that tests what they learned from their insect encounters. The questions are based on the facts discovered during exploration, reinforcing the learning through active recall in a playful, low-pressure format.</p></div>
       </div>
-      <div class="case-full"><p class="cc-label">Key Features</p><h5>What makes Mini-World tick</h5><ul><li><strong>Starting menu with level selection</strong> &mdash; players choose their entry point from a clear menu.</li><li><strong>Insect interactions</strong> &mdash; approaching and engaging with each insect triggers a pop-up fact.</li><li><strong>In-game camera &amp; journal</strong> &mdash; players photograph each insect, photos are then stored and viewable in a journal.</li><li><strong>Quiz system</strong> &mdash; Level 2 presents questions drawn from the facts players encountered in Level 1.</li><li><strong>Data logging</strong> &mdash; all player activity is logged to a <strong>CSV file</strong> for analysis and research purposes.</li></ul></div>
-      <div class="case-full"><p class="cc-label">Gameplay Demo</p><h5>Watch it in action</h5><video controls preload="metadata" style="width:100%;border-radius:12px;" src="vr game.mp4"></video></div>
-    </template>
+      <div class="case-full"><p class="cc-label">Key Features</p><h5>What makes Mini-World tick</h5><ul><li><strong>Starting menu with level selection</strong> - players choose their entry point from a clear menu.</li><li><strong>Insect interactions</strong> - approaching and engaging with each insect triggers a pop-up fact.</li><li><strong>In-game camera & journal</strong> - players photograph each insect, photos are then stored and viewable in a journal.</li><li><strong>Quiz system</strong> - Level 2 presents questions drawn from the facts players encountered in Level 1.</li><li><strong>Data logging</strong> - all player activity is logged to a <strong>CSV file</strong> for analysis and research purposes.</li></ul></div>
+      <div class="case-full"><p class="cc-label">Gameplay Demo</p><h5>Watch it in action</h5><video controls style="width:100%;border-radius:12px;" src="vr game.mp4"></video></div>
+    </div>
+  </div>
+</div>
 
-    <!-- Project: PayPay -->
-    <template data-src="p-payment">
-      <div class="case-hero case-hero-payment">
-        <div class="case-hero-content">
-          <p class="project-number">Project 03 &middot; UI Design</p>
-          <h2 class="case-title">Online Payment Landing Page</h2>
-          <p class="case-sub">Web UI &middot; Banking &amp; FinTech</p>
-        </div>
+<!-- MODAL 3: ONLINE PAYMENT -->
+<div class="modal-overlay" id="modal-payment" onclick="closeOnBg(event,'modal-payment')">
+  <div class="modal">
+    <div class="modal-hero" style="background:linear-gradient(145deg,#27272a 0%,#0a0a0a 100%);height:340px;">
+      <button class="modal-close" onclick="closeModal('modal-payment')" style="background:#fff;color:var(--dark);border:2px solid var(--border);">✕</button>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,18,15,0.75) 0%,transparent 55%);display:flex;align-items:flex-end;padding:2rem;">
+        <div><p style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255, 255, 255,0.75);margin-bottom:0.4rem;font-family:'Work Sans',sans-serif;font-weight:700;">Project 03 · UI Design</p><h2 style="font-family:'Fraunces',Georgia,serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:white;">Online Payment Landing Page</h2><p style="font-size:0.88rem;color:rgba(255, 255, 255,0.85);font-family:'Work Sans',sans-serif;">Web UI · Banking & FinTech</p></div>
       </div>
-      <div class="case-meta">
-        <span class="meta-tag meta-gold">UI Design</span>
-        <span class="meta-tag meta-gold">Web Design</span>
-        <span class="meta-tag meta-gold">Figma</span>
-        <span class="meta-tag meta-outline">Landing Page</span>
-        <span class="meta-tag meta-outline">FinTech &middot; 2025</span>
-      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-meta"><span class="meta-tag meta-gold">UI Design</span><span class="meta-tag meta-gold">Web Design</span><span class="meta-tag meta-gold">Figma</span><span class="meta-tag meta-outline">Landing Page</span><span class="meta-tag meta-outline">FinTech · 2025</span></div>
       <div class="case-full"><p class="cc-label">Overview</p><h5>What is this project?</h5><p>A fully designed landing page for an online payment and digital banking product. The goal was to build trust instantly, because in FinTech, first impressions directly affect conversion. The design communicates security, speed, and simplicity above all else.</p></div>
       <div class="case-grid">
         <div class="case-card"><p class="cc-label">The Challenge</p><h5>Trust is hard to earn on a single page</h5><p>Financial products face a uniquely high bar: users need to feel safe before they even consider signing up. The design had to balance boldness with credibility, confident but not aggressive.</p></div>
         <div class="case-card"><p class="cc-label">My Approach</p><h5>Clarity over decoration</h5><p>I led with a strong hero section that names the value proposition upfront, used a restrained colour palette with high contrast CTAs, and let generous whitespace do the trust-building heavy lifting.</p></div>
       </div>
-      <div class="case-full"><p class="cc-label">Design Decisions</p><h5>Key choices that shaped the page</h5><ul><li><strong>Typography hierarchy</strong> &mdash; bold display type for the headline, lighter weight for supporting copy.</li><li><strong>Colour palette</strong> &mdash; deep navy with electric accent, signalling reliability and modernity.</li><li><strong>Social proof positioning</strong> &mdash; trust indicators placed close to the CTA to reduce friction.</li><li><strong>Card UI for features</strong> &mdash; scannable benefit blocks readable in under 10 seconds.</li></ul></div>
-      <div class="case-full"><p class="cc-label">Design Preview</p><h5>Full page</h5><div style="margin-bottom:1rem;"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/839156231020749.688142bae97b8.png" class="case-image-full" alt="Online payment landing page preview"/></div><a href="https://www.behance.net/gallery/231020749/Online-Payment-Landing-Page" target="_blank" rel="noopener" class="behance-link">View on Behance &nearr;</a></div>
+      <div class="case-full"><p class="cc-label">Design Decisions</p><h5>Key choices that shaped the page</h5><ul><li><strong>Typography hierarchy</strong> - bold display type for the headline, lighter weight for supporting copy.</li><li><strong>Colour palette</strong> - deep navy with electric accent, signalling reliability and modernity.</li><li><strong>Social proof positioning</strong> - trust indicators placed close to the CTA to reduce friction.</li><li><strong>Card UI for features</strong> - scannable benefit blocks readable in under 10 seconds.</li></ul></div>
+      <div class="case-full"><p class="cc-label">Design Preview</p><h5>Full page</h5><div style="margin-bottom:1rem;"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/839156231020749.688142bae97b8.png" style="width:100%;border-radius:12px;box-shadow:0 4px 0 rgba(20,18,15,0.12), 0 12px 32px rgba(20,18,15,0.08);"/></div><a href="https://www.behance.net/gallery/231020749/Online-Payment-Landing-Page" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--dark);font-family:'Work Sans',sans-serif;text-decoration:none;border:2px solid var(--border);padding:0.35rem 0.85rem;border-radius:8px;margin-top:0.5rem;">View on Behance ↗</a></div>
       <div class="dark-card"><p class="cc-label">Tools Used</p><h5>Stack</h5><div class="pill-row"><span class="pill pill-cream">Figma</span><span class="pill pill-cream">Auto Layout</span><span class="pill pill-cream">Components</span><span class="pill pill-cream">Web Design</span></div></div>
-    </template>
+    </div>
+  </div>
+</div>
 
-    <!-- Project: Le Petite Café -->
-    <template data-src="p-cafe">
-      <div class="case-hero case-hero-cafe">
-        <div class="case-hero-content">
-          <p class="project-number">Project 04 &middot; UX/UI Design</p>
-          <h2 class="case-title">Le Petite Café</h2>
-          <p class="case-sub">Web Design &middot; Café Ordering</p>
-        </div>
+<!-- MODAL 4: LE PETITE CAFÉ -->
+<div class="modal-overlay" id="modal-cafe" onclick="closeOnBg(event,'modal-cafe')">
+  <div class="modal">
+    <div class="modal-hero" style="background:linear-gradient(145deg,#ebe5ff 0%,#c4b5fd 55%,#8b7ae0 130%);height:340px;position:relative;">
+      <button class="modal-close" onclick="closeModal('modal-cafe')" style="background:#fff;color:var(--dark);border:2px solid var(--border);">✕</button>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,18,15,0.72) 0%,transparent 58%);display:flex;align-items:flex-end;padding:2rem;">
+        <div><p style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255, 255, 255,0.78);margin-bottom:0.4rem;font-family:'Work Sans',sans-serif;font-weight:700;">Project 04 · UX/UI Design</p><h2 style="font-family:'Fraunces',Georgia,serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:white;">Le Petite Café</h2><p style="font-size:0.88rem;color:rgba(255, 255, 255,0.9);font-family:'Work Sans',sans-serif;">Web Design · Café Ordering</p></div>
       </div>
-      <div class="case-meta">
-        <span class="meta-tag meta-red">UX/UI Design</span>
-        <span class="meta-tag meta-red">Web Design</span>
-        <span class="meta-tag meta-red">Figma</span>
-        <span class="meta-tag meta-outline">Café &middot; Food &amp; Bev</span>
-        <span class="meta-tag meta-outline">Personal Project &middot; 2025</span>
-      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-meta"><span class="meta-tag meta-red">UX/UI Design</span><span class="meta-tag meta-red">Web Design</span><span class="meta-tag meta-red">Figma</span><span class="meta-tag meta-outline">Café · Food &amp; Bev</span><span class="meta-tag meta-outline">Personal Project · 2025</span></div>
       <div class="case-full"><p class="cc-label">Overview</p><h5>What is Le Petite Café?</h5><p>Le Petite Café is a website designed for a boutique café where customers can browse the menu and place orders directly online. The goal was to create an ordering experience that feels as warm and inviting as walking into the café itself, making it easy to find what you want, customise your order, and check out without friction.</p></div>
       <div class="case-grid">
         <div class="case-card"><p class="cc-label">The Challenge</p><h5>Ordering that feels effortless</h5><p>Most café websites are either too basic or too cluttered. The challenge was to design a clean, intuitive ordering flow that guides users from browsing to checkout in as few steps as possible, without losing the personality of the brand.</p></div>
         <div class="case-card"><p class="cc-label">My Approach</p><h5>Warm design, clear flow</h5><p>I used earthy tones, generous food photography, and a simple layout hierarchy to make the ordering process feel natural. Every screen was designed with one goal: get the user to what they want fast, with no confusion along the way.</p></div>
       </div>
-      <div class="case-full"><p class="cc-label">Key Screens</p><h5>What the website covers</h5><ul><li><strong>Home</strong> &mdash; hero section with featured items, today's specials, and a clear call to order.</li><li><strong>Menu</strong> &mdash; categorised by drinks, food, and extras with filters and food photography.</li><li><strong>Item detail</strong> &mdash; customisation options (size, milk type, extras), quantity, and add to cart.</li><li><strong>Cart &amp; checkout</strong> &mdash; order summary, pickup or delivery selection, and payment.</li><li><strong>Order confirmation</strong> &mdash; clean confirmation screen with estimated ready time.</li></ul></div>
-      <div class="case-full"><p class="cc-label">Design Preview</p><h5>Selected screens</h5><div class="case-image-grid"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/239bed220130211.67bdce4a75ebc.png" class="case-image-full" alt="Café screen 1"/><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/fddcb2220130211.67bdce4a7362a.png" class="case-image-full" alt="Café screen 2"/></div><a href="https://www.behance.net/gallery/220130211/Le-Petite-Caf" target="_blank" rel="noopener" class="behance-link">View on Behance &nearr;</a></div>
-      <div class="dark-card"><p class="cc-label">Tools &amp; Approach</p><h5>Stack</h5><div class="pill-row"><span class="pill pill-cream">Figma</span><span class="pill pill-cream">Component Library</span><span class="pill pill-cream">Mobile UI</span><span class="pill pill-cream">User Flows</span><span class="pill pill-cream">Prototyping</span></div></div>
-    </template>
+      <div class="case-full"><p class="cc-label">Key Screens</p><h5>What the website covers</h5><ul><li><strong>Home</strong> - hero section with featured items, today's specials, and a clear call to order.</li><li><strong>Menu</strong> - categorised by drinks, food, and extras with filters and food photography.</li><li><strong>Item detail</strong> - customisation options (size, milk type, extras), quantity, and add to cart.</li><li><strong>Cart &amp; checkout</strong> - order summary, pickup or delivery selection, and payment.</li><li><strong>Order confirmation</strong> - clean confirmation screen with estimated ready time.</li></ul></div>
+      <div class="case-full"><p class="cc-label">Design Preview</p><h5>Selected screens</h5><div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:1rem;"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/239bed220130211.67bdce4a75ebc.png" style="width:100%;border-radius:10px;"/><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/fddcb2220130211.67bdce4a7362a.png" style="width:100%;border-radius:10px;"/></div><a href="https://www.behance.net/gallery/220130211/Le-Petite-Caf" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--dark);font-family:'Work Sans',sans-serif;text-decoration:none;border:2px solid var(--border);padding:0.35rem 0.85rem;border-radius:8px;margin-top:0.5rem;">View on Behance ↗</a></div>
+      <div class="dark-card"><p class="cc-label">Tools & Approach</p><h5>Stack</h5><div class="pill-row"><span class="pill pill-cream">Figma</span><span class="pill pill-cream">Component Library</span><span class="pill pill-cream">Mobile UI</span><span class="pill pill-cream">User Flows</span><span class="pill pill-cream">Prototyping</span></div></div>
+    </div>
+  </div>
+</div>
 
-    <!-- Project: Muzic -->
-    <template data-src="p-muzic">
-      <div class="case-hero case-hero-muzic">
-        <div class="case-hero-content">
-          <p class="project-number">Project 05 &middot; UI Design</p>
-          <h2 class="case-title">Muzic App</h2>
-          <p class="case-sub">Mobile App &middot; Music Streaming</p>
-        </div>
+<!-- MODAL 5: MUZIC -->
+<div class="modal-overlay" id="modal-muzic" onclick="closeOnBg(event,'modal-muzic')">
+  <div class="modal">
+    <div class="modal-hero" style="background:linear-gradient(145deg,#8b7ae0 0%,#3d2f7a 100%);height:340px;position:relative;">
+      <button class="modal-close" onclick="closeModal('modal-muzic')" style="background:#fff;color:var(--dark);border:2px solid var(--border);">✕</button>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,18,15,0.78) 0%,transparent 55%);display:flex;align-items:flex-end;padding:2rem;">
+        <div><p style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255, 255, 255,0.78);margin-bottom:0.4rem;font-family:'Work Sans',sans-serif;font-weight:700;">Project 05 · UI Design</p><h2 style="font-family:'Fraunces',Georgia,serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:white;">Muzic App</h2><p style="font-size:0.88rem;color:rgba(255, 255, 255,0.88);font-family:'Work Sans',sans-serif;">Mobile App · Music Streaming</p></div>
       </div>
-      <div class="case-meta">
-        <span class="meta-tag meta-gold">UI Design</span>
-        <span class="meta-tag meta-gold">Mobile App</span>
-        <span class="meta-tag meta-gold">Figma</span>
-        <span class="meta-tag meta-gold">Notion</span>
-        <span class="meta-tag meta-outline">Music &middot; Entertainment</span>
-        <span class="meta-tag meta-outline">Personal Project &middot; 2025</span>
-      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-meta"><span class="meta-tag meta-gold">UI Design</span><span class="meta-tag meta-gold">Mobile App</span><span class="meta-tag meta-gold">Figma</span><span class="meta-tag meta-gold">Notion</span><span class="meta-tag meta-outline">Music · Entertainment</span><span class="meta-tag meta-outline">Personal Project · 2025</span></div>
       <div class="case-full"><p class="cc-label">Overview</p><h5>What is Muzic?</h5><p>Muzic is a dark-mode music streaming app concept that puts the artist's album at the centre of the experience. Designed for people who care deeply about how music looks as much as how it sounds, the UI adapts its colour palette dynamically to the currently playing track, creating an immersive, ever-changing environment.</p></div>
       <div class="case-grid">
-        <div class="case-card"><p class="cc-label">The Challenge</p><h5>Standing out in a crowded space</h5><p>Spotify, Apple Music, Tidal &mdash; music apps are dominated by giants. The design challenge was to carve out a visual identity that felt fresh, premium, and genuinely music-first rather than feature-first.</p></div>
+        <div class="case-card"><p class="cc-label">The Challenge</p><h5>Standing out in a crowded space</h5><p>Spotify, Apple Music, Tidal - music apps are dominated by giants. The design challenge was to carve out a visual identity that felt fresh, premium, and genuinely music-first rather than feature-first.</p></div>
         <div class="case-card"><p class="cc-label">My Approach</p><h5>Visual immersion as a differentiator</h5><p>I designed around the music rather than around the interface. Album art bleeds into backgrounds, text adapts to contrast, and the player screen becomes a full-canvas experience, almost like a digital album sleeve.</p></div>
       </div>
-      <div class="case-full"><p class="cc-label">Design Preview</p><h5>Selected screens</h5><div class="case-image-grid"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/57bb92218199609.679d218ece1dd.png" class="case-image-full" alt="Muzic screen 1"/><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/38fb30218199609.679d218ed1813.png" class="case-image-full" alt="Muzic screen 2"/></div><div class="case-image-grid"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/5de9d1218199609.679d218ed06cd.png" class="case-image-full" alt="Muzic screen 3"/><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/87d644218199609.679d218ecea54.png" class="case-image-full" alt="Muzic screen 4"/></div><a href="https://www.behance.net/gallery/218199609/Muzic-App" target="_blank" rel="noopener" class="behance-link">View on Behance &nearr;</a></div>
+      <div class="case-full"><p class="cc-label">Design Preview</p><h5>Selected screens</h5><div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:1rem;"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/57bb92218199609.679d218ece1dd.png" style="width:100%;border-radius:10px;"/><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/38fb30218199609.679d218ed1813.png" style="width:100%;border-radius:10px;"/></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:1rem;"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/5de9d1218199609.679d218ed06cd.png" style="width:100%;border-radius:10px;"/><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/87d644218199609.679d218ecea54.png" style="width:100%;border-radius:10px;"/></div><a href="https://www.behance.net/gallery/218199609/Muzic-App" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--dark);font-family:'Work Sans',sans-serif;text-decoration:none;border:2px solid var(--border);padding:0.35rem 0.85rem;border-radius:8px;margin-top:0.5rem;">View on Behance ↗</a></div>
       <div class="dark-card"><p class="cc-label">Tools Used</p><h5>Stack</h5><div class="pill-row"><span class="pill pill-cream">Figma</span><span class="pill pill-cream">Notion</span><span class="pill pill-cream">Dark UI</span><span class="pill pill-cream">Component System</span><span class="pill pill-cream">Prototyping</span></div></div>
-    </template>
+    </div>
+  </div>
+</div>
 
-    <!-- Project: Foodz -->
-    <template data-src="p-foodz">
-      <div class="case-hero case-hero-foodz">
-        <div class="case-hero-content">
-          <p class="project-number">Project 06 &middot; UX/UI Design</p>
-          <h2 class="case-title">Foodz Delivery App</h2>
-          <p class="case-sub">Mobile App &middot; Food Delivery</p>
-        </div>
+<!-- MODAL 6: FOODZ -->
+<div class="modal-overlay" id="modal-foodz" onclick="closeOnBg(event,'modal-foodz')">
+  <div class="modal">
+    <div class="modal-hero" style="background:linear-gradient(145deg,#d4d4d8 0%,#52525b 90%);height:340px;position:relative;">
+      <button class="modal-close" onclick="closeModal('modal-foodz')" style="background:#fff;color:var(--dark);border:2px solid var(--border);">✕</button>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,18,15,0.72) 0%,transparent 58%);display:flex;align-items:flex-end;padding:2rem;">
+        <div><p style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255, 255, 255,0.78);margin-bottom:0.4rem;font-family:'Work Sans',sans-serif;font-weight:700;">Project 06 · UX/UI Design</p><h2 style="font-family:'Fraunces',Georgia,serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:white;">Foodz Delivery App</h2><p style="font-size:0.88rem;color:rgba(255, 255, 255,0.88);font-family:'Work Sans',sans-serif;">Mobile App · Food Delivery</p></div>
       </div>
-      <div class="case-meta">
-        <span class="meta-tag meta-red">UX/UI Design</span>
-        <span class="meta-tag meta-red">Mobile App</span>
-        <span class="meta-tag meta-red">Figma</span>
-        <span class="meta-tag meta-red">Notion</span>
-        <span class="meta-tag meta-outline">Food Delivery</span>
-        <span class="meta-tag meta-outline">Personal Project &middot; 2024</span>
-      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-meta"><span class="meta-tag meta-red">UX/UI Design</span><span class="meta-tag meta-red">Mobile App</span><span class="meta-tag meta-red">Figma</span><span class="meta-tag meta-red">Notion</span><span class="meta-tag meta-outline">Food Delivery</span><span class="meta-tag meta-outline">Personal Project · 2024</span></div>
       <div class="case-full"><p class="cc-label">Overview</p><h5>What is Foodz?</h5><p>Foodz is a comprehensive food delivery app concept designed from the ground up, covering every stage of the user's journey from restaurant discovery to real-time order tracking and post-delivery review. The design prioritises speed and appetite appeal: food should look irresistible on screen.</p></div>
       <div class="case-grid">
         <div class="case-card"><p class="cc-label">The Challenge</p><h5>Navigating complexity without friction</h5><p>Food delivery apps carry enormous feature complexity. The challenge was to keep every flow feeling light and fast, even when handling many options and states.</p></div>
         <div class="case-card"><p class="cc-label">My Approach</p><h5>Progressive disclosure</h5><p>I structured the app so users are never overwhelmed, showing only what's relevant at each moment. The home screen is curated, not cluttered; complexity is revealed gradually as users drill deeper into their order.</p></div>
       </div>
-      <div class="case-full"><p class="cc-label">Design Preview</p><h5>Selected screens</h5><div class="case-image-grid"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/cb5932215161237.67654b972c6bb.png" class="case-image-full" alt="Foodz screen 1"/><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/002e7d215161237.67654b97317ca.png" class="case-image-full" alt="Foodz screen 2"/></div><div class="case-image-grid"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/38f542215161237.67654b972e0d2.png" class="case-image-full" alt="Foodz screen 3"/><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/296acb215161237.67654b972c1ec.png" class="case-image-full" alt="Foodz screen 4"/></div><a href="https://www.behance.net/gallery/215161237/Foodz-Delivery-Application" target="_blank" rel="noopener" class="behance-link">View on Behance &nearr;</a></div>
+      <div class="case-full"><p class="cc-label">Design Preview</p><h5>Selected screens</h5><div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:1rem;"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/cb5932215161237.67654b972c6bb.png" style="width:100%;border-radius:10px;"/><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/002e7d215161237.67654b97317ca.png" style="width:100%;border-radius:10px;"/></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:1rem;"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/38f542215161237.67654b972e0d2.png" style="width:100%;border-radius:10px;"/><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/296acb215161237.67654b972c1ec.png" style="width:100%;border-radius:10px;"/></div><a href="https://www.behance.net/gallery/215161237/Foodz-Delivery-Application" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--dark);font-family:'Work Sans',sans-serif;text-decoration:none;border:2px solid var(--border);padding:0.35rem 0.85rem;border-radius:8px;margin-top:0.5rem;">View on Behance ↗</a></div>
       <div class="dark-card"><p class="cc-label">Tools Used</p><h5>Stack</h5><div class="pill-row"><span class="pill pill-cream">Figma</span><span class="pill pill-cream">Canva</span><span class="pill pill-cream">Notion</span><span class="pill pill-cream">Mobile UX</span><span class="pill pill-cream">Prototyping</span></div></div>
-    </template>
+    </div>
+  </div>
+</div>
 
-    <!-- Project: Elie Saab -->
-    <template data-src="p-elie">
-      <div class="case-hero case-hero-elie">
-        <div class="case-hero-content">
-          <p class="project-number">Project 07 &middot; Web Design &middot; Fashion</p>
-          <h2 class="case-title">Elie Saab &mdash; About Page</h2>
-          <p class="case-sub">Luxury Fashion &middot; Editorial Web Design</p>
-        </div>
+<!-- MODAL 7: ELIE SAAB -->
+<div class="modal-overlay" id="modal-elie" onclick="closeOnBg(event,'modal-elie')">
+  <div class="modal">
+    <div class="modal-hero" style="background:linear-gradient(160deg,#0a0a0a 0%,#27272a 50%,#8b7ae0 160%);height:340px;position:relative;">
+      <button class="modal-close" onclick="closeModal('modal-elie')" style="background:#fff;color:var(--dark);border:2px solid var(--border);">✕</button>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,18,15,0.82) 0%,transparent 55%);display:flex;align-items:flex-end;padding:2rem;">
+        <div><p style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(196,181,253,0.9);margin-bottom:0.4rem;font-family:'Work Sans',sans-serif;font-weight:700;">Project 07 · Web Design · Fashion</p><h2 style="font-family:'Fraunces',Georgia,serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:white;">Elie Saab - About Page</h2><p style="font-size:0.88rem;color:rgba(255,255,255,0.85);font-family:'Work Sans',sans-serif;">Luxury Fashion · Editorial Web Design</p></div>
       </div>
-      <div class="case-meta">
-        <span class="meta-tag meta-gold">Web Design</span>
-        <span class="meta-tag meta-gold">Figma</span>
-        <span class="meta-tag meta-gold">Pinterest</span>
-        <span class="meta-tag meta-outline">Fashion &middot; Haute Couture</span>
-        <span class="meta-tag meta-outline">Personal Project &middot; 2025</span>
-      </div>
-      <div class="case-full"><p class="cc-label">Overview</p><h5>What is this project?</h5><p>A reimagined "About" page for Elie Saab, one of the most celebrated names in haute couture. The project explores how a luxury fashion house can tell its story online: through restraint, grandeur, and the kind of editorial stillness that lets craftsmanship speak for itself.</p><p>Rather than showcasing products, this page is purely narrative &mdash; the founder's story, the house's heritage, and the philosophy behind the stitches.</p></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-meta"><span class="meta-tag meta-gold">Web Design</span><span class="meta-tag meta-gold">Figma</span><span class="meta-tag meta-gold">Pinterest</span><span class="meta-tag meta-outline">Fashion · Haute Couture</span><span class="meta-tag meta-outline">Personal Project · 2025</span></div>
+      <div class="case-full"><p class="cc-label">Overview</p><h5>What is this project?</h5><p>A reimagined "About" page for Elie Saab, one of the most celebrated names in haute couture. The project explores how a luxury fashion house can tell its story online: through restraint, grandeur, and the kind of editorial stillness that lets craftsmanship speak for itself.</p><p>Rather than showcasing products, this page is purely narrative - the founder's story, the house's heritage, and the philosophy behind the stitches.</p></div>
       <div class="case-grid">
         <div class="case-card"><p class="cc-label">The Challenge</p><h5>Luxury that doesn't shout</h5><p>Luxury brands walk a fine line online, the web is inherently noisy, but the brand demands quiet authority. Every pixel choice had to feel deliberate and refined.</p></div>
         <div class="case-card"><p class="cc-label">Design Philosophy</p><h5>Editorial minimalism</h5><p>Inspired by high-fashion print editorials, full-bleed photography, serif-driven typography with wide tracking, off-white backgrounds, and sparse layout that treats empty space as a design element.</p></div>
       </div>
-      <div class="case-full"><p class="cc-label">Design Preview</p><h5>Full design</h5><div style="margin-bottom:1rem;"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/e4a6e8218179545.679cde69427f2.png" class="case-image-full" alt="Elie Saab about page"/></div></div>
+      <div class="case-full"><p class="cc-label">Design Preview</p><h5>Full design</h5><div style="margin-bottom:1rem;"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/e4a6e8218179545.679cde69427f2.png" style="width:100%;border-radius:12px;box-shadow:0 4px 0 rgba(20,18,15,0.1), 0 12px 32px rgba(20,18,15,0.06);"/></div></div>
       <div class="dark-card"><p class="cc-label">Tools Used</p><h5>Stack</h5><div class="pill-row"><span class="pill pill-cream">Figma</span><span class="pill pill-cream">Pinterest</span><span class="pill pill-cream">Editorial Layout</span><span class="pill pill-cream">Luxury Branding</span></div></div>
-    </template>
-
-    <!-- ========== MENU DETAIL PANELS ========== -->
-    <template data-src="menu-contact">
-      <p class="section-label">Contact</p>
-      <h2 class="detail-title">Let's talk.</h2>
-      <p class="detail-lede">Reach out for collaborations, research, internships, or just to say hi.</p>
-      <div class="contact-cards">
-        <a href="mailto:noor.salama@example.com" class="contact-card">
-          <span class="cc-label">Email</span>
-          <span class="contact-value">noor.salama@example.com</span>
-        </a>
-        <a href="https://www.linkedin.com/in/noorsal" target="_blank" rel="noopener" class="contact-card">
-          <span class="cc-label">LinkedIn</span>
-          <span class="contact-value">/in/noorsal</span>
-        </a>
-        <a href="https://www.behance.net/noorsal1" target="_blank" rel="noopener" class="contact-card">
-          <span class="cc-label">Behance</span>
-          <span class="contact-value">/noorsal1</span>
-        </a>
-        <div class="contact-card contact-card-static">
-          <span class="cc-label">Based in</span>
-          <span class="contact-value">Stockholm, Sweden</span>
-        </div>
-      </div>
-    </template>
-
-    <template data-src="menu-cv">
-      <p class="section-label">CV</p>
-      <h2 class="detail-title">Curriculum Vitae.</h2>
-      <p class="detail-lede">The short version lives in this network. The full PDF is available on request.</p>
-      <p class="detail-body-text">Explore the <strong>Experiences</strong> cluster for role-by-role detail, or the <strong>Who I Am</strong> cluster for education and background. For a formatted PDF, email <a href="mailto:noor.salama@example.com">noor.salama@example.com</a> or reach out on <a href="https://www.linkedin.com/in/noorsal" target="_blank" rel="noopener">LinkedIn</a>.</p>
-      <div class="contact-cards">
-        <a href="mailto:noor.salama@example.com?subject=CV%20request" class="contact-card">
-          <span class="cc-label">Request PDF</span>
-          <span class="contact-value">Email me &rarr;</span>
-        </a>
-        <a href="https://www.linkedin.com/in/noorsal" target="_blank" rel="noopener" class="contact-card">
-          <span class="cc-label">Full profile</span>
-          <span class="contact-value">LinkedIn &nearr;</span>
-        </a>
-      </div>
-    </template>
-
+    </div>
   </div>
+</div>
 
-  <script src="assets/network.js"></script>
+<script>
+  /* Theme toggle (dark / light) */
+  const themeToggleDesktop = document.getElementById('themeToggleDesktop');
+  const themeToggleMobile  = document.getElementById('themeToggleMobile');
+  function applyTheme(theme) {
+    document.body.classList.toggle('dark', theme === 'dark');
+    try { localStorage.setItem('theme', theme); } catch (e) {}
+  }
+  function toggleTheme() {
+    applyTheme(document.body.classList.contains('dark') ? 'light' : 'dark');
+  }
+  themeToggleDesktop?.addEventListener('click', toggleTheme);
+  themeToggleMobile?.addEventListener('click', toggleTheme);
+  (function initTheme() {
+    let stored = null;
+    try { stored = localStorage.getItem('theme'); } catch (e) {}
+    if (stored === 'dark') applyTheme('dark');
+    else if (!stored && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+  })();
+
+  /* Auto-update timeline state badges (Upcoming -> In Progress -> Completed) based on today's date */
+  (function updateTimelineStates() {
+    function parseLocalDate(iso) {
+      const [y, m, d] = iso.split('-').map(Number);
+      return new Date(y, m - 1, d);
+    }
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    document.querySelectorAll('.timeline-item[data-start]').forEach(item => {
+      const start = parseLocalDate(item.dataset.start);
+      const end = item.dataset.end ? parseLocalDate(item.dataset.end) : null;
+      const badge = item.querySelector('[data-auto-badge]');
+      const dot = item.querySelector('.timeline-dot');
+      if (!badge || !dot) return;
+      if (today < start) {
+        item.classList.add('pending'); item.classList.remove('in-progress');
+        dot.classList.add('pending'); dot.classList.remove('in-progress');
+        badge.classList.add('upcoming-badge'); badge.classList.remove('progress-badge');
+        badge.textContent = 'Upcoming';
+      } else if (end && today > end) {
+        item.classList.remove('pending', 'in-progress');
+        dot.classList.remove('pending', 'in-progress');
+        badge.remove();
+      } else {
+        item.classList.add('in-progress'); item.classList.remove('pending');
+        dot.classList.add('in-progress'); dot.classList.remove('pending');
+        badge.classList.add('progress-badge'); badge.classList.remove('upcoming-badge');
+        badge.textContent = 'In Progress';
+      }
+    });
+  })();
+
+  /* Hamburger menu */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('active', isOpen);
+  });
+  function closeMobileMenu() { mobileMenu.classList.remove('open'); hamburger.classList.remove('active'); }
+  document.addEventListener('click', e => { if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) closeMobileMenu(); });
+
+  /* Modals */
+  function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
+  function closeOnBg(e, id) { if (e.target === document.getElementById(id)) closeModal(id); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(m => { m.classList.remove('open'); document.body.style.overflow = ''; });
+  });
+
+  /* Horizontal Slider */
+  const slider = document.getElementById('projectsSlider');
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+  const progressBar = document.getElementById('sliderProgress');
+  const currentEl = document.getElementById('sliderCurrent');
+  const totalEl = document.getElementById('sliderTotal');
+  const cards = slider.querySelectorAll('.project-card');
+  const TOTAL = cards.length;
+  totalEl.textContent = TOTAL;
+
+  function updateSliderUI() {
+    const scrollLeft = slider.scrollLeft;
+    const maxScroll = slider.scrollWidth - slider.clientWidth;
+    const pct = maxScroll > 0 ? (scrollLeft / maxScroll) * 100 : 0;
+    progressBar.style.width = pct + '%';
+    const cardWidth = cards[0].offsetWidth + 22;
+    const idx = Math.round(scrollLeft / cardWidth);
+    currentEl.textContent = Math.min(idx + 1, TOTAL);
+    btnPrev.disabled = scrollLeft <= 2;
+    btnNext.disabled = scrollLeft >= maxScroll - 2;
+  }
+  function scrollByCard(dir) { slider.scrollBy({ left: dir * (cards[0].offsetWidth + 22), behavior: 'smooth' }); }
+  btnPrev.addEventListener('click', () => scrollByCard(-1));
+  btnNext.addEventListener('click', () => scrollByCard(1));
+  slider.addEventListener('scroll', updateSliderUI);
+  window.addEventListener('resize', updateSliderUI);
+
+  /* Drag to scroll */
+  let isDown = false, startX, scrollStart;
+  slider.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - slider.offsetLeft; scrollStart = slider.scrollLeft; slider.style.cursor = 'grabbing'; });
+  slider.addEventListener('mouseleave', () => { isDown = false; slider.style.cursor = 'grab'; });
+  slider.addEventListener('mouseup', () => { isDown = false; slider.style.cursor = 'grab'; });
+  slider.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); slider.scrollLeft = scrollStart - (e.pageX - slider.offsetLeft - startX); });
+
+  setTimeout(updateSliderUI, 100);
+
+  /* Scroll animations */
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+  document.querySelectorAll('.fade-section, .timeline-item').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
