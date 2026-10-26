@@ -877,6 +877,7 @@ body.dark .timeline::before {
 .card-5 .project-thumb { background: linear-gradient(145deg, #c9e4d3 0%, #7abd94 100%); color: var(--ink); }
 .card-6 .project-thumb { background: linear-gradient(145deg, #b8d0ff 0%, #6b8fe0 100%); color: var(--ink); }
 .card-7 .project-thumb { background: linear-gradient(145deg, #f4d5b8 0%, #d99a68 100%); color: var(--ink); }
+.card-8 .project-thumb { background: linear-gradient(145deg, #c8f0d8 0%, #5bbf8a 55%, #2f8f5b 120%); color: #fff; }
 
 /* ============================================================
    FOOTER
@@ -1434,6 +1435,10 @@ footer {
   </div>
   <div class="projects-slider-wrap">
     <div class="projects-slider" id="projectsSlider">
+      <div class="project-card card-8" onclick="openModal('modal-moolan')">
+        <div class="project-thumb">Moolan's Trail</div>
+        <div class="project-info"><h3>Moolan's Trail - Platformer Game</h3><p>A Super Mario-inspired trail adventure drawn from Swiss summer hikes. Short, joyful levels made for killing boredom.</p><span class="project-type">Game · Java · Computer Graphics</span><div class="open-hint"><svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View case study</div></div>
+      </div>
       <div class="project-card card-1" onclick="openModal('modal-ar')">
         <div class="project-thumb">Almost Real</div>
         <div class="project-info"><h3>Almost Real - AR Furniture App</h3><p>Android AR app to visualise 3D furniture in your real space before buying.</p><span class="project-type">AR · Unity · C#</span><div class="open-hint"><svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View case study</div></div>
@@ -1467,7 +1472,7 @@ footer {
   <div class="slider-progress-wrap">
     <div class="slider-progress-bar" id="sliderProgress"></div>
   </div>
-  <p class="slider-counter">Project <span id="sliderCurrent">1</span> of <span id="sliderTotal">7</span>. Drag or use arrows.</p>
+  <p class="slider-counter">Project <span id="sliderCurrent">1</span> of <span id="sliderTotal">8</span>. Drag or use arrows.</p>
 </section>
 
 <!-- FOOTER -->
@@ -1571,6 +1576,37 @@ footer {
       </div>
       <div class="case-full"><p class="cc-label">Key Features</p><h5>What makes Mini-World tick</h5><ul><li><strong>Starting menu with level selection</strong> - players choose their entry point from a clear menu.</li><li><strong>Insect interactions</strong> - approaching and engaging with each insect triggers a pop-up fact.</li><li><strong>In-game camera & journal</strong> - players photograph each insect, photos are then stored and viewable in a journal.</li><li><strong>Quiz system</strong> - Level 2 presents questions drawn from the facts players encountered in Level 1.</li><li><strong>Data logging</strong> - all player activity is logged to a <strong>CSV file</strong> for analysis and research purposes.</li></ul></div>
       <div class="case-full"><p class="cc-label">Gameplay Demo</p><h5>Watch it in action</h5><video controls style="width:100%;border-radius:12px;" src="vr game.mp4"></video></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: MOOLAN'S TRAIL -->
+<div class="modal-overlay" id="modal-moolan" onclick="closeOnBg(event,'modal-moolan')">
+  <div class="modal">
+    <div class="modal-hero" style="background:linear-gradient(145deg,#1e4d36 0%,#3a8f5c 45%,#a8e6c0 130%);height:340px;">
+      <button class="modal-close" onclick="closeModal('modal-moolan')">✕</button>
+      <div class="modal-hero-content">
+        <p class="project-number" style="color:rgba(255,255,255,0.8);">Project · Game Dev</p>
+        <h2 style="color:#fff;">Moolan's Trail</h2>
+        <p class="hero-sub" style="color:rgba(255,255,255,0.9);">Super Mario-inspired hiking platformer</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-meta">
+        <span class="meta-tag meta-gold">Game Design</span>
+        <span class="meta-tag meta-gold">Java</span>
+        <span class="meta-tag meta-gold">Computer Graphics</span>
+        <span class="meta-tag meta-outline">Platformer</span>
+        <span class="meta-tag meta-outline">Personal Project · 2025</span>
+      </div>
+      <div class="case-full"><p class="cc-label">Overview</p><h5>What is Moolan's Trail?</h5><p>Moolan's Trail is a bright, bite-sized platformer inspired by two things that stuck with me: the hiking trails I explored across Switzerland last summer, and the joyful feel of classic Super Mario. The idea was simple. Take the rhythm of a real mountain path (ups, downs, little surprises around each bend) and wrap it in that familiar run-and-jump magic.</p><p>It is the kind of game you open when you have five spare minutes and want something that just feels good. Fast to pick up, hard to put down, and built to melt boredom without asking for a huge commitment.</p></div>
+      <div class="case-grid">
+        <div class="case-card"><p class="cc-label">Inspiration</p><h5>Swiss trails + Super Mario</h5><p>Every level nods to real summer hikes: winding paths, sudden climbs, quiet lookout moments. The gameplay language comes from Super Mario: snappy jumps, collectibles, and that "one more try" loop that makes a short session feel complete.</p></div>
+        <div class="case-card"><p class="cc-label">The Feel</p><h5>Fun first, always</h5><p>No heavy lore dump, no endless grind. Just clean movement, cheerful levels, and enough challenge to keep your brain busy. A pocket adventure for when you need a reset.</p></div>
+      </div>
+      <div class="case-full"><p class="cc-label">Technical</p><h5>How it is built</h5><ul><li><strong>Java from scratch</strong> - no game engine. The whole game is written in Java, with the render loop, input handling, and scene updates coded by hand.</li><li><strong>Computer graphics via code</strong> - characters, environments, and scenes are drawn programmatically using CG concepts (shapes, transforms, sprites, layering) instead of dragging assets into an editor.</li><li><strong>Custom physics &amp; collision</strong> - movement, gravity, grounded checks, and hit detection for platforms, collectibles, and hazards are implemented in code so the jump feel stays tight and Mario-like.</li><li><strong>Game loop</strong> - start menu, level progression, score / collectible tracking, and a quick restart so "one more run" is frictionless.</li><li><strong>Polish</strong> - camera follow, simple visual juice on jumps and pickups, and UI that stays out of the way of the play.</li></ul></div>
+      <div class="case-full"><p class="cc-label">Gameplay Demo</p><h5>Watch it in action</h5><video controls playsinline style="width:100%;border-radius:12px;border:1.5px solid var(--ink);box-shadow:4px 5px 0 var(--ink);" src="moolans-demo.mp4"></video></div>
+      <div class="dark-card"><p class="cc-label">Tools Used</p><h5>Stack</h5><div class="pill-row"><span class="pill pill-cream">Java</span><span class="pill pill-cream">Computer Graphics</span><span class="pill pill-cream">Custom Game Loop</span><span class="pill pill-cream">2D Rendering</span><span class="pill pill-cream">Game Design</span></div></div>
     </div>
   </div>
 </div>
