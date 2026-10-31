@@ -939,31 +939,48 @@ body.light footer { background: #000; color: #f4f1ea; }
   .nav-actions-mobile { display: flex; }
   .about-grid, .exp-layout { grid-template-columns: 1fr; }
   .case-grid { grid-template-columns: 1fr; }
-  .hero-brand { font-size: clamp(3.6rem, 18vw, 6rem); }
+
+  /* Mirror desktop: text left + portrait right, both vertically centered */
+  .hero {
+    justify-content: center;
+    padding-bottom: 3.5rem; /* room for marquee */
+  }
   .hero-content {
-    max-width: 100%;
-    /* leave room on the right so text never sits under the portrait */
-    padding-right: calc(var(--pad) + min(40vw, 200px) + 0.85rem);
+    max-width: 46%;
+    margin-top: 0;
+    padding: 0 var(--pad);
+  }
+  .hero-brand {
+    font-size: clamp(3.8rem, 14vw, 6.5rem);
+  }
+  .hero-line {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
   }
   .hero-media img {
-    top: 5.75rem;
+    top: 48%;
     right: var(--pad);
     left: auto;
-    transform: none;
-    width: min(40vw, 210px);
-    height: min(40vw, 210px);
-    max-height: none;
+    transform: translateY(-50%);
+    width: min(48vw, 380px);
+    height: min(48vw, 380px);
+    max-height: 62vh;
     opacity: 1;
+  }
+  .marquee {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    margin-top: 0;
   }
   .hero-media::after {
     background:
-      linear-gradient(90deg, #050505 0%, rgba(5,5,5,0.72) 40%, transparent 70%),
-      linear-gradient(180deg, transparent 42%, rgba(5,5,5,0.55) 70%, #050505 90%);
+      linear-gradient(90deg, #050505 0%, rgba(5,5,5,0.9) 26%, rgba(5,5,5,0.2) 48%, transparent 64%),
+      linear-gradient(180deg, transparent 62%, rgba(5,5,5,0.5) 86%, #050505 100%);
   }
   body.light .hero-media::after {
     background:
-      linear-gradient(90deg, #050505 0%, rgba(5,5,5,0.65) 42%, transparent 72%),
-      linear-gradient(180deg, transparent 42%, rgba(5,5,5,0.55) 72%, #050505 92%);
+      linear-gradient(90deg, #050505 0%, rgba(5,5,5,0.82) 28%, transparent 58%),
+      linear-gradient(180deg, transparent 55%, rgba(5,5,5,0.6) 100%);
   }
 }
 
@@ -973,20 +990,29 @@ body.light footer { background: #000; color: #f4f1ea; }
   .modal-hero { height: 220px; }
   .case-full .images { grid-template-columns: 1fr; }
   .footer-inner { flex-direction: column; }
+
   .hero {
-    /* push text block below the top-right portrait */
-    padding-top: 11.5rem;
+    padding-bottom: 3.25rem;
   }
   .hero-content {
-    padding-right: var(--pad);
+    max-width: 46%;
   }
+  .hero-brand {
+    font-size: clamp(2.8rem, 12vw, 3.8rem);
+    margin-bottom: 0.6rem;
+  }
+  .hero-line {
+    font-size: 0.82rem;
+    line-height: 1.4;
+    margin-bottom: 0.95rem;
+  }
+  .hero-cta { font-size: 0.64rem; }
   .hero-media img {
-    top: 4.75rem;
-    right: var(--pad);
-    width: 128px;
-    height: 128px;
+    width: min(52vw, 230px);
+    height: min(52vw, 230px);
+    max-height: 58vh;
+    right: 0.75rem;
   }
-  .hero-brand { font-size: clamp(3.2rem, 16vw, 4.5rem); }
 }
 
 @media (prefers-reduced-motion: reduce) {
